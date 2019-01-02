@@ -272,14 +272,18 @@ Page({
           facilityIndex: selected ? utils.getKey(selected,sb):0,
           facilityValue: selected,
         });
+        that.getFacilityXHList();
         //that.resetData();//重设表单
       }
     }).catch((err) => {
       console.log(err);
     });
   },
-  //由设备名称读取对应一系列的编号列表
-  getFacilityXHList: function () {
+  /**
+   * 由设备名称读取对应一系列的编号列表
+   * selected 已经选择的值，用于修改
+   */
+  getFacilityXHList: function (selected='') {
     var that = this;
     //js获取对象长度
     let arr = Object.keys(that.data.pkgRelation);
@@ -295,6 +299,7 @@ Page({
       //console.log(sbbh);
       that.setData({
         facilityXH: sbbh,//that.data.facilityXH.concat(sbbh),
+        facilityXHIndex: selected ? utils.getKey(selected, sbbh) : 0,
       });
     }
   },
