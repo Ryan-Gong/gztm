@@ -228,9 +228,10 @@ Page({
   },
   /**
    * 绑定站点关联的设备
-   * selected 已经选择的值，用于修改
+   * sbmc 已经选择的值【设备名】，用于修改
+   * sbbh 设备编号
    */
-  getFacilityBySite: function (selected='') {
+  getFacilityBySite: function (sbmc = '', sbbh = '') {
     let that = this;
     let facility = that.data.facility;
     //组装请求参数
@@ -267,10 +268,10 @@ Page({
         that.setData({
           facility: sb,//facility.concat(sb),
           pkgRelation: json,
-          facilityIndex: selected ? utils.getKey(selected,sb):0,
-          facilityValue: selected,
+          facilityIndex: sbmc ? utils.getKey(sbmc,sb):0,
+          facilityValue: sbmc,
         });
-        that.getFacilityXHList();//读取对应一系列的编号列表
+        that.getFacilityXHList(sbbh);//读取对应一系列的编号列表
         //that.resetData();//重设表单
       }
     }).catch((err) => {
@@ -280,7 +281,7 @@ Page({
 
   /**
    * 由设备名称读取对应一系列的编号列表
-   * selected 已经选择的值，用于修改
+   * selected 已经选择的值【设备编号】，用于修改
    */
   getFacilityXHList: function (selected='') {
     var that = this;
@@ -407,9 +408,8 @@ Page({
         cateIndex: utils.getKey(res.result.fl, that.data.cate),
         cateValue: res.result.fl,
         usersIndex: utils.getKey(res.result.jlry, that.data.users),
-        
       });
-      that.getFacilityBySite(res.result.sbmc);
+      that.getFacilityBySite(res.result.sbmc, res.result.sbbh);
     }).catch((err) => {
       console.log(err);
     });
