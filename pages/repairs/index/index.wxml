@@ -1,0 +1,44 @@
+<!--miniprogram/pages/repairs/index/index.wxml-->
+<view class="page">
+  <view class="page__hd"></view>
+  <view class="page__bd">
+    <form bindsubmit="formSubmit">
+      <!--错误提示-->
+      <view class="weui-toptips weui-toptips_warn" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
+      <!--other-->
+      <!---->
+      <view class="weui-cells__title">我的事务</view>
+      <view class="weui-cells weui-cells_after-title">
+        <navigator url="/pages/repairs/verify/verify" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">
+            <view style="display: inline-block; vertical-align: middle">待审核</view>
+            <view class="weui-badge" style="margin-left: 5px;">{{summary.review.wait}}</view>
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access">查看</view>
+        </navigator>
+        <navigator url="/pages/repairs/confirm/confirm" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">
+            <view style="display: inline-block; vertical-align: middle">待确定</view>
+            <view class="weui-badge" style="margin-left: 5px;">{{summary.confirm.wait}}</view>
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access">查看</view>
+        </navigator>
+        <navigator url="/pages/repairs/search/search?jlry=" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">
+            <view style="display: inline-block; vertical-align: middle">我的维护记录</view>
+            <view class="weui-badge" style="margin-left: 5px;">{{summary.total}}</view>
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access">查看</view>
+        </navigator>
+      </view>
+      <!--按钮-->
+      <view class="weui-btn-area" wx:if="{{editRight}}">
+          <button class="weui-btn" type="primary" form-type='submit'>确定</button>
+      </view>
+    </form>
+  </view>
+  <!--添加按钮 悬浮于底端-->
+  <view class='fixed-bottom'>
+    <button type="primary" bindtap="addRepairs">新增维护信息</button> 
+  </view>
+</view>

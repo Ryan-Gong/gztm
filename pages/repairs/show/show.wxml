@@ -1,0 +1,132 @@
+<!--miniprogram/pages/repairs/show/show.wxml-->
+<view class="page">
+  <view class="page__hd"></view>
+  <view class="page__bd">
+    <form bindsubmit="formSubmit">
+      <!--错误提示-->
+      <view class="weui-toptips weui-toptips_warn" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
+      <!--类别-->
+      <view class="weui-cells__title">分类</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_select">
+            <view class="weui-cell__bd">
+                <picker disabled='{{!editRight}}' name='fl' bindchange="bindAccountChange" value="{{cateIndex}}" range="{{cate}}">
+                    <view class="weui-select">{{cateValue}}</view>
+                </picker>
+            </view>
+        </view>
+      </view>
+      <!--标题-->
+      <view class="weui-cells__title">标题</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input name='bt' disabled='{{!editRight}}' class="weui-input" placeholder="请输入标题" value='{{repairs.bt}}' />
+          </view>
+        </view>
+      </view>
+      <!--所属站点-->
+      <view class="weui-cells__title">所属站点</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input name='zddz' disabled='{{!editRight}}' class="weui-input" placeholder="所属站点" value='{{repairs.zdm}}' />
+          </view>
+        </view>
+      </view>
+      <!--关联设备-->
+      <view class="weui-cells__title">关联设备</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_select">
+            <view class="weui-cell__bd">
+                <picker disabled='{{!editRight}}' name='sb' bindchange="" value="{{sbIndex}}" range="{{sblist}}">
+                    <view class="weui-select">{{repairs.sbmc}}</view>
+                </picker>
+            </view>
+        </view>
+      </view>
+      <!--设备编号-->
+      <view class="weui-cells__title">设备编号</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_select">
+            <view class="weui-cell__bd">
+                <picker disabled='{{!editRight}}' name='sbbh' bindchange="" value="{{sbbhIndex}}" range="{{sbbhList}}">
+                    <view class="weui-select">{{repairs.sbbh}}</view>
+                </picker>
+            </view>
+        </view>
+      </view>
+      <!--描述-->
+      <view class="weui-cells__title">描述</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <textarea disabled='{{!editRight}}' name='bz' class="weui-textarea" placeholder="" value='{{repairs.ms}}' style="height: 3.3em" />
+          </view>
+        </view>
+      </view>
+      <!--总结-->
+      <view class="weui-cells__title">总结</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <textarea disabled='{{!editRight}}' name='bz' class="weui-textarea" placeholder="" value='{{repairs.zj}}' style="height: 3.3em" />
+          </view>
+        </view>
+      </view>
+      <!--维护时间-->
+      <view class="weui-cells__title">维护时间</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <picker disabled='{{!editRight}}' name='jzsj' mode="date" value="{{buildDate}}" start="2017-09-01" end="2020-09-01" bindchange="bindDateChange">
+                <view class="weui-input">{{buildDate}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+      <!--提交时间-->
+      <view class="weui-cells__title">提交时间</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input name='tjsj' disabled='{{!editRight}}' class="weui-input" placeholder="系统自动生成" value='{{repairs.tjsj}}' />
+          </view>
+        </view>
+      </view>
+      <!--审核人员-->
+      <view class="weui-cells__title">审核人员</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input name='shry' disabled='{{!editRight}}' class="weui-input" placeholder="" value='{{repairs.shry}}' />
+          </view>
+        </view>
+      </view>
+      <!--审核时间-->
+      <view class="weui-cells__title">审核时间</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input name='shsj' disabled='{{!editRight}}' class="weui-input" placeholder="" value='{{repairs.shsj}}' />
+          </view>
+        </view>
+      </view>
+      <!--审核备注-->
+      <view class="weui-cells__title">审核备注</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <textarea disabled='{{!editRight}}' name='shbz' class="weui-textarea" placeholder="此处显示审核备注" value='{{repairs.shbz}}' style="height: 3.3em" />
+          </view>
+        </view>
+      </view>
+      <!--other-->
+      <!---->
+      <!--按钮-->
+      <view class="weui-btn-area" wx:if="{{editRight}}">
+          <button class="weui-btn" type="primary" form-type='submit'>确定</button>
+      </view>
+    </form>
+  </view>
+</view>

@@ -1,0 +1,26 @@
+<!--pages/login/login.wxml-->
+<view class='container'>
+  <view class='header'>
+    <text>磨面站点管理</text>
+  </view>
+  <form bindsubmit="formSubmit">
+    <view class='section'>
+      <text>站点：</text>
+      <input type='text' placeholder='站点' name="zdm" value=''/>
+    </view>
+    <view class='section'>
+      <text>经纬度:</text>
+      <view class='row'>
+        <input class='col_input' type='text' placeholder='经度' name="jd" value='' />
+        <text></text>
+        <input class='col_input' type='text' placeholder='纬度' name="wd" value='' />
+      </view>
+      
+    </view>
+    <view class='button'>
+      <button type='primary' form-type='submit'>保存</button>
+    </view>
+  </form>
+  <vas-toast id='toast'></vas-toast>
+  <button bindtap="showToast">点击弹出toast</button>
+</view>

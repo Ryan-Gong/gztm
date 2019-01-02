@@ -1,0 +1,11 @@
+<!--components/toast/toast.wxml-->
+<view class="toast-box {{isShow? 'show':''}}" animation="{{animationData}}">
+    <view class="toast-content">
+        <view class="toast-img"  wx:if="{{type}}">
+            <block>
+                <icon type="{{type}}" size="25" />
+            </block>
+        </view>
+        <view class="toast-title">{{title}}</view>
+    </view>
+</view>

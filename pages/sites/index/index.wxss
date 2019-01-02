@@ -1,0 +1,34 @@
+/* miniprogram/pages/sites/index/index.wxss */
+.page-section-gap{
+  box-sizing: border-box;
+  /**padding: 30rpx 0rpx;**/
+  padding: 0rpx;
+}
+.aa{
+  display: flex;
+  flex-direction: row;
+}
+/**画圆点**/
+.circle{
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+  display: inline-block; vertical-align: middle
+}
+/**正常**/
+.green{
+  background-color: green;
+}
+/**故障**/
+.red{
+  background-color: red;
+}
+/**维护**/
+.yellow{
+  background-color: yellow;
+}
+/**在建**/
+.orange{
+  background-color: orange;
+}

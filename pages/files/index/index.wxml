@@ -1,0 +1,86 @@
+<!--miniprogram/pages/files/index/index.wxml-->
+<view class="page">
+    <!--页头-->
+    <view class="page__hd">
+      <view class="page__title">{{info.name}}</view>
+      <view class="page__desc">存档清单</view>
+    </view>
+    <!--主体-->
+    <view class="page__bd">
+      <!--使用block实现展示循环数据-->
+      <scroll-view scroll-y  scroll-with-animation='true' style='height:100%;' >
+        <!--无数据-->
+        <view class="weui-loadmore weui-loadmore_line" wx:if='{{files.length<=0}}'>
+          <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+        </view>
+        <!--有数据-->
+        <block wx:for='{{files}}' wx:for-index="index" wx:for-item="item">
+          <view class="weui-form-preview">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__label">文件分类</view>
+                  <view class="weui-form-preview__value_in-hd">{{item.wjfl}}</view>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__label">文件名称</view>
+                  <view class="weui-form-preview__value">{{item.wjm}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__label">文件备注</view>
+                  <view class="weui-form-preview__value">{{item.bz}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__label">更新日期</view>
+                  <view class="weui-form-preview__value">{{item.gxsj}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__label">绑定对象</view>
+                  <view class="weui-form-preview__value" wx:if="{{item.conobj=='ZDID'}}">站点</view>
+                  <view class="weui-form-preview__value" wx:elif="{{item.conobj=='SBXH'}}">设备型号</view>
+                  <view wx:else>设备批次</view>
+                </view>
+            </view>
+            <!--零部件信息-->
+            <!--按钮-->
+            <view class="weui-form-preview__ft">
+              <navigator url="" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">详情</navigator>
+              <view class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap='remove'>删除</view>
+            </view>
+            <!---->
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+    <!--添加按钮 悬浮于底端-->
+    <view class='sectionNew' wx:if='{{editRight}}'>
+      <button type="primary" bindtap='showModal'>新增设备</button>
+    </view>
+    <!--隐藏区域  -->
+    <!--屏幕背景变暗的背景 -->
+    <view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+    <!--弹出框 -->
+    <view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+      <!--站点名称-->
+      <view class="weui-cells__title">设备名称</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input name='zdm' disabled='{{disabled}}' class="weui-input" placeholder="请选择设备" value='{{site.zdm}}' />
+          </view>
+        </view>
+      </view>
+      <!--站点名称-->
+      <view class="weui-cells__title">设备编号</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input name='zdm' disabled='{{disabled}}' class="weui-input" placeholder="请选择设备编号" value='{{site.zdm}}' />
+          </view>
+        </view>
+      </view>
+      <button type="primary">添加</button>
+    </view>
+    <!--没有页脚-->
+</view>

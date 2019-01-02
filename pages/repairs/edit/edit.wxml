@@ -1,0 +1,170 @@
+<!--miniprogram/pages/repairs/edit/edit.wxml-->
+<view class="page">
+  <view class="page__hd"></view>
+  <view class="page__bd">
+    <form bindsubmit="formSubmit">
+      <!--错误提示-->
+      <view class="weui-toptips weui-toptips_warn" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
+      <!--关联站点-->
+      <view class="weui-cells__title">关联站点</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input name='zdid' disabled='{{disabled}}' value='{{selectedSite.id}}' hidden />
+            <input name='zdname' class="weui-input" placeholder="选择站点" value='{{selectedSite.name}}' bindtap='showModal' />
+          </view>
+        </view>
+      </view>
+      <!--标题-->
+      <view class="weui-cells__title">标题</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input name='bt' class="weui-input" placeholder="此处输入标题" value='{{repairs.bt}}' />
+          </view>
+        </view>
+      </view>
+      <!--分类-->
+      <view class="weui-cells__title">分类</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_select">
+            <view class="weui-cell__bd">
+                <picker name='fl' bindchange="bindTypeChange" value="{{cateIndex}}" range="{{cate}}">
+                    <view class="weui-select">{{cate[cateIndex]}}</view>
+                </picker>
+            </view>
+        </view>
+      </view>
+      <!--维护人员-->
+      <view class="weui-cells__title">维护人员</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_select">
+            <view class="weui-cell__bd">
+                <picker name='whry' bindchange="bindUser" value="{{usersIndex}}" range="{{users}}">
+                    <view class="weui-select">{{users[usersIndex]}}</view>
+                </picker>
+            </view>
+        </view>
+      </view>
+      <!--关联设备-->
+      <view class="weui-cells__title">关联设备</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_select">
+            <view class="weui-cell__bd">
+                <picker name='sbmc' bindchange="selectFacility" value="{{facilityIndex}}" range="{{facility}}">
+                    <view class="weui-select">{{facility[facilityIndex]}}</view>
+                </picker>
+            </view>
+        </view>
+      </view>
+      <!--设备编号-->
+      <view class="weui-cells__title">设备编号</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_select">
+            <view class="weui-cell__bd">
+                <picker name='sbbh' bindchange="selectFacilityXH" value="{{facilityXHIndex}}" range="{{facilityXH}}">
+                    <view class="weui-select">{{facilityXH[facilityXHIndex]}}</view>
+                </picker>
+            </view>
+        </view>
+      </view>
+      <!--维护时间-->
+      <view class="weui-cells__title">维护时间</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <picker name='whsj' mode="date" value="{{buildDate}}" start="2017-09-01" end="2030-09-01" bindchange="bindDateChange">
+                <view class="weui-input">{{buildDate}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+      <!--描述-->
+      <view class="weui-cells__title">描述</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <textarea  name='ms' class="weui-textarea" value='{{repairs.ms}}' style="height: 3.3em" placeholder="此处输入描述" />
+          </view>
+        </view>
+      </view>
+      <!--总结-->
+      <view class="weui-cells__title">总结</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <textarea  name='zj' class="weui-textarea" value='{{repairs.zj}}' style="height: 3.3em" placeholder="此处输入总结" />
+          </view>
+        </view>
+      </view>
+      <!--是否发布-->
+      <view class="weui-cells__title">是否发布</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_switch">
+                <view class="weui-cell__bd">是否发布</view>
+                <view class="weui-cell__ft">
+                    <switch checked='{{published}}' name='fbzt' bindchange="switchChange" />
+                </view>
+            </view>
+        </view>
+      <!--other-->
+      <!--按钮-->
+      <view class="weui-btn-area">
+          <button class="weui-btn" type="primary" form-type='submit'>确定</button>
+      </view>
+    </form>
+  </view>
+  <!--隐藏区域 弹出框-->
+  <view animation="{{animationData}}" class="pop" wx:if="{{showModalStatus}}">
+    <view class='pop-hd'>
+      <view class='pop-title'>
+        <text>选择磨面站点</text>
+        <text bindtap="hideModal">X</text>
+      </view>
+      <!--搜索栏-->
+      <view class="weui-search-bar" style='background:#ffffff;border:0;'>
+        <view class="weui-search-bar__form">
+          <view class="weui-search-bar__box">
+              <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+              <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+              <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                  <icon type="clear" size="14"></icon>
+              </view>
+          </view>
+          <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+              <icon class="weui-icon-search" type="search" size="14"></icon>
+              <view class="weui-search-bar__text">搜索</view>
+          </label>
+        </view>
+        <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+      </view>
+      <!---->
+    </view>
+    <view class='pop-bd'>
+      <view class='searchbar-result'>
+        <view class="weui-cells__title">搜索结果：</view>
+        <!--无数据-->
+        <view class="weui-loadmore weui-loadmore_line" wx:if="{{searchSiteResult.length<=0}}">
+            <view class="weui-loadmore__tips weui-loadmore__tips_in-line">很抱歉，没有找到与您输入条件相关的内容</view>
+        </view>
+        <!--有数据-循环-->
+        <scroll-view scroll-y  scroll-with-animation='true' style='height:100%;' >
+          <view class="weui-cells weui-cells_after-title">
+            <radio-group bindchange="radioChange">
+              <!--循环-->
+              <label class="weui-cell weui-check__label" wx:for="{{searchSiteResult}}" wx:for-index="index" wx:for-item="item">
+                  <radio class="weui-check" value="{{item.Id}}" checked="{{item.checked}}"/>
+                  <view class="weui-cell__bd">{{item.zdm}}</view>
+                  <view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{item.checked}}">
+                    <icon class="weui-icon-radio" type="success_no_circle" size="16"></icon>
+                  </view>
+              </label>
+            </radio-group>
+          </view>
+        </scroll-view>
+      </view>
+      <!--添加按钮 悬浮于底端-->
+      
+    </view>
+  </view>
+</view>

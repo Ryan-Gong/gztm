@@ -1,0 +1,87 @@
+<!--miniprogram/pages/facility/index/index.wxml-->
+<view class="page">
+  <view class="page__hd">
+    <!--
+      <view class="page__title">磨面站点管理</view>
+      <view class="page__desc">此处仅供通过站点、设备信息进行搜索</view>
+    -->
+  </view>
+  <view class="page__bd">
+    <!--搜索框 悬浮于顶端-->
+    <view class="weui-search-bar section_search">
+      <view class="weui-search-bar__form">
+        <form bindsubmit="search">
+          <view class="weui-search-bar__box">
+            <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+            <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm="search" />
+            <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+              <icon type="clear" size="14"></icon>
+            </view>
+          </view>
+          <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+            <icon class="weui-icon-search" type="search" size="14"></icon>
+            <view class="weui-search-bar__text">搜索</view>
+          </label>
+        </form>
+      </view>
+      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" 
+        bindtap="hideInput">取消</view>
+    </view>
+    <!--搜索结果-->
+    <view class="page-section-gap">
+      <!--使用block实现展示循环数据-->
+      <scroll-view scroll-y  scroll-with-animation='true' bindscrolltolower='loadmore' bindscroll='scroll' style='height:{{windowHeight}}px;'>
+        <!--无数据-->
+        <view class="weui-loadmore weui-loadmore_line" wx:if="{{facility.length<=0}}">
+            <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+        </view>
+        <!--有数据-循环-->
+        <block wx:for='{{facility}}' wx:for-index="index" wx:for-item="item">
+          <view class="weui-form-preview">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">设备名称</view>
+                    <view class="weui-form-preview__value_in-hd">{{item.mc}}</view>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">设备编号</view>
+                    <view class="weui-form-preview__value">{{item.sbbh}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">设备型号</view>
+                    <view class="weui-form-preview__value">{{item.xh}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">设备批次</view>
+                    <view class="weui-form-preview__value">{{item.sbpc}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">所属站点</view>
+                    <view class="weui-form-preview__value">{{item.zdid}}/{{item.zdm}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">设备状况</view>
+                    <view class="weui-form-preview__value">{{item.zk}}</view>
+                </view>
+            </view>
+            <!--按钮-->
+            <view class="weui-form-preview__ft">
+              <navigator url="/pages/facility/show/show?id={{item.Id}}" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">查看详情</navigator>
+            </view>
+            <!---->
+          </view>
+        </block>
+        <!--加载更多-->
+        <view class="weui-loadmore" hidden="{{isHideLoadMore}}">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载</view>
+        </view>
+        <view class="loading complete" hidden="{{!isComplete}}">--我也是有底线的--</view>
+      </scroll-view>
+    </view>
+    <!--按钮栏-->
+    <!---->
+  </view>
+</view>

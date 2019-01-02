@@ -1,0 +1,20 @@
+<!--miniprogram/pages/sites/show/show.wxml-->
+<view class="container">
+  <!--搜索框 悬浮于顶端-->
+  <view  class='section_search row'>
+    <view class='search_arr'>
+      <icon class='searchcion' size='20' type='search' catchtap='searchNow'></icon>
+      <input placeholder='请输入关键字' bindinput='search' ></input>
+    </view>
+    <view class='cancel'>搜索</view>
+  </view>
+  <!--搜索结果-->
+  <view class='section_show'>
+    <scroll-view scroll-y  scroll-with-animation='true' style='height:100px;' >             <block wx:for='{{titles}}'>
+          <view>{{item}}</view>
+      </block>
+      <text>ddd</text>
+    </scroll-view>
+    </view>
+
+</view>

@@ -1,0 +1,118 @@
+<!--miniprogram/pages/sites/show/show.wxml-->
+<view class="page">
+  <view class="page__hd"></view>
+  <view class="page__bd">
+    <form bindsubmit="formSubmit">
+      <!--错误提示-->
+      <view class="weui-toptips weui-toptips_warn" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
+      <!--站点名称-->
+      <view class="weui-cells__title">站点名称</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input name='zdm' disabled='{{!editRight}}' class="weui-input" placeholder="请输入磨面站点的名称" value='{{site.zdm}}' />
+          </view>
+        </view>
+      </view>
+      <!--站点地址-->
+      <view class="weui-cells__title">站点地址</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input name='zddz' disabled='{{!editRight}}' class="weui-input" placeholder="请输入磨面站点的地址" value='{{site.zddz}}' />
+          </view>
+        </view>
+      </view>
+      <!--经纬度-->
+      <view class="weui-cells__title">经纬度</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+              <view class="weui-label">经度</view>
+          </view>
+          <view class="weui-cell__bd">
+              <input name='jd' disabled='{{!editRight}}' class="weui-input" placeholder="请输入经度" value='{{site.jd}}' />
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+              <view class="weui-label">纬度</view>
+          </view>
+          <view class="weui-cell__bd">
+              <input name='wd' disabled='{{!editRight}}' class="weui-input" placeholder="请输入维度" value='{{site.wd}}' />
+          </view>
+        </view>
+      </view>
+      <!--联系方式-->
+      <view class="weui-cells__title">联系方式</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input name='lxfs' disabled='{{!editRight}}' class="weui-input" placeholder="" value='{{site.lxfs}}' />
+          </view>
+        </view>
+      </view>
+      <!--建站时间-->
+      <view class="weui-cells__title">建站时间</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <picker disabled='{{!editRight}}' name='jzsj' mode="date" value="{{buildDate}}" start="2017-09-01" end="2020-09-01" bindchange="bindDateChange">
+                <view class="weui-input">{{buildDate}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+      <!--站点状况-->
+      <view class="weui-cells__title">站点状况</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_select">
+            <view class="weui-cell__bd">
+                <picker disabled='{{!editRight}}' name='zt' bindchange="bindAccountChange" value="{{siteStateIndex}}" range="{{siteState}}">
+                    <view class="weui-select">{{siteStateValue}}</view>
+                </picker>
+            </view>
+        </view>
+      </view>
+      <!--备注-->
+      <view class="weui-cells__title">备注</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <textarea disabled='{{!editRight}}' name='bz' class="weui-textarea" placeholder="" value='{{site.bz}}' style="height: 3.3em" />
+          </view>
+        </view>
+      </view>
+      <!--other-->
+      <!---->
+      <view class="weui-cells__title">与{{site.zdm}}相关的</view>
+      <view class="weui-cells weui-cells_after-title">
+        <navigator url="../facility/facility?id={{id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">
+            <view style="display: inline-block; vertical-align: middle">设备信息</view>
+            <view class="weui-badge" style="margin-left: 5px;">{{facility.length}}</view>
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access">查看</view>
+        </navigator>
+        <navigator url="../maintenance/maintenance?id={{id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">
+            <view style="display: inline-block; vertical-align: middle">维护记录</view>
+            <view class="weui-badge" style="margin-left: 5px;">{{records.length}}</view>
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access">查看</view>
+        </navigator>
+        <navigator url="../files/files?id={{id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">
+            <view style="display: inline-block; vertical-align: middle">存档信息</view>
+            <view class="weui-badge" style="margin-left: 5px;">{{files.length}}</view>
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access">查看</view>
+        </navigator>
+      </view>
+      <!--按钮-->
+      <view class="weui-btn-area" wx:if="{{editRight}}">
+          <button class="weui-btn" type="primary" form-type='submit'>确定</button>
+      </view>
+    </form>
+  </view>
+</view>

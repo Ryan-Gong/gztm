@@ -1,0 +1,60 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- 用户 openid -->
+  <view class="userinfo">
+    <button 
+      open-type="getUserInfo" 
+      bindgetuserinfo="onGetUserInfo"
+      class="userinfo-avatar"
+      style="background-image: url({{avatarUrl}})"
+    ></button>
+    <view>
+      <!--如果没有userInfo，显示"登录"-->
+      <button wx:if="{{!userInfo}}" class="userinfo-nickname" bindtap="onGetOpenid">点击登录系统</button>
+      <!--如果有userInfo，显示"欢迎和退出"-->
+      <view class="welcome" wx:else>
+        <text>您好, {{userInfo.uname}}! </text>
+        <button class="userinfo-nickname logout" bindtap="logout">退出</button>
+      </view>
+      
+    </view>
+  </view>
+
+
+  <!-- 站点信息 -->
+  <view class="uploader">
+    <navigator url="../sites/index/index" open-type="navigate" class="uploader-text">
+      <text>磨面站查询</text>
+    </navigator>
+  </view>
+
+
+  <!-- 设备信息 -->
+  <view class="uploader">
+    <navigator url="../facility/index/index" open-type="navigate" class="uploader-text">
+      <text>设备查询</text>
+    </navigator>
+  </view>
+
+  <!-- 零部件信息 -->
+  <view class="uploader">
+    <navigator url="../parts/index/index" open-type="navigate" class="uploader-text">
+      <text>零部件查询</text>
+    </navigator>
+  </view>
+
+  <!-- 维护记录 -->
+  <view class="uploader">
+    <navigator url="../repairs/index/index" open-type="navigate" class="uploader-text">
+      <text>维护记录</text>
+    </navigator>
+  </view>
+
+  <!-- 消息栏 -->
+  <view class="uploader">
+    <navigator url="../sites/map/map" open-type="navigate" class="uploader-text">
+      <text>我的消息</text>
+    </navigator>
+  </view>
+
+</view>

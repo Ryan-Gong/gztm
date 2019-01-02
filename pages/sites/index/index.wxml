@@ -1,0 +1,84 @@
+<!--miniprogram/pages/sites/index/index.wxml-->
+<view class="page">
+  <view class="page__hd">
+    <!--
+      <view class="page__title">磨面站点管理</view>
+      <view class="page__desc">此处仅供通过站点、设备信息进行搜索</view>
+    -->
+  </view>
+  <view class="page__bd">
+    <!--搜索框-->
+    <view class="weui-search-bar">
+      <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+          <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+            <icon type="clear" size="14"></icon>
+          </view>
+        </view>
+        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+          <icon class="weui-icon-search" type="search" size="14"></icon>
+          <view class="weui-search-bar__text">搜索</view>
+        </label>
+      </view>
+      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" 
+      bindtap="hideInput">取消</view>
+    </view>
+    <!--地图-->
+    <view class="page-section page-section-gap">
+      <map
+        id="map"
+        class="map" 
+        longitude="{{longitude}}" 
+        latitude="{{latitude}}" 
+        scale="8" 
+        show-location="true" 
+        markers="{{markers}}" 
+        bindmarkertap="makertap"
+        style="width: 100%; height: 700rpx;"
+      ></map>
+    </view>
+    <!--按钮栏-->
+    <view class="weui-cells weui-cells_after-title">
+      <!--正常站点-->
+      <view class="weui-cell weui-cell_access">
+        <view class="weui-cell__bd">
+          <view class="circle green"></view>
+          <view style="display: inline-block; vertical-align: middle">正常站点</view>
+          <view class="weui-badge" style="margin-left: 5px;">{{siteType.runing}}</view>
+        </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access" bindtap="detial" data-type="1">详细信息</view>
+      </view>
+      <!--故障站点-->
+      <view class="weui-cell weui-cell_access">
+        <view class="weui-cell__bd">
+          <view class="circle red"></view>
+          <view style="display: inline-block; vertical-align: middle">故障站点</view>
+          <view class="weui-badge" style="margin-left: 5px;">{{siteType.breakdown}}</view>
+        </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access" bindtap="detial" data-type="2">详细信息</view>
+      </view>
+      <!--维护站点-->
+      <view class="weui-cell weui-cell_access">
+        <view class="weui-cell__bd">
+          <view class="circle yellow"></view>
+          <view style="display: inline-block; vertical-align: middle">维护站点</view>
+          <view class="weui-badge" style="margin-left: 5px;">{{siteType.repair}}</view>
+        </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access" bindtap="detial" data-type="3">详细信息</view>
+      </view>
+      <!--在建站点-->
+      <view class="weui-cell weui-cell_access">
+        <view class="weui-cell__bd">
+          <view class="circle orange"></view>
+          <view style="display: inline-block; vertical-align: middle">在建站点</view>
+          <view class="weui-badge" style="margin-left: 5px;">{{siteType.building}}</view>
+        </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access" bindtap="detial" data-type="4">详细信息</view>
+      </view>
+      <!---->
+    </view>
+    <!---->
+  </view>
+</view>

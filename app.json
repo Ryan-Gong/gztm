@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/userLogin/userLogin",
+    "pages/sites/index/index",
+    "pages/sites/search/index",
+    "pages/sites/show/show",
+    "pages/sites/map/map",
+    "pages/sites/qqmap/qqmap",
+    "pages/sites/facility/facility",
+    "pages/sites/maintenance/maintenance",
+    "pages/sites/files/files",
+    "pages/sites/parts/parts",
+    "pages/facility/index/index",
+    "pages/facility/show/show",
+    "pages/files/index/index",
+    "pages/parts/index/index",
+    "pages/parts/show/show",
+    "pages/repairs/index/index",
+    "pages/repairs/show/show",
+    "pages/repairs/add/add",
+    "pages/repairs/verify/verify",
+    "pages/repairs/confirm/confirm",
+    "pages/repairs/search/search",
+    "pages/msg/msg_success",
+    "pages/msg/msg_fail",
+    "pages/repairs/edit/edit"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "赞比亚磨面站信息管理系统",
+    "navigationBarTextStyle": "black"
+  }
+}

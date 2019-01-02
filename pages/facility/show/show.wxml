@@ -1,0 +1,116 @@
+<!--miniprogram/pages/facility/show/show.wxml-->
+<view class="page">
+  <view class="page__hd"></view>
+  <view class="page__bd">
+    <form bindsubmit="formSubmit">
+      <!--错误提示-->
+      <view class="weui-toptips weui-toptips_warn" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
+      <!--设备名称-->
+      <view class="weui-cells__title">设备名称</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input name='mc' disabled='{{!editRight}}' class="weui-input" placeholder="请输入名称" value='{{info.mc}}' />
+          </view>
+        </view>
+      </view>
+      <!--设备编号-->
+      <view class="weui-cells__title">设备编号</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input name='sbbh' disabled='{{!editRight}}' class="weui-input" placeholder="请输入设备编号" value='{{info.sbbh}}' />
+          </view>
+        </view>
+      </view>
+      <!--设备型号-->
+      <view class="weui-cells__title">设备型号</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input name='xh' disabled='{{!editRight}}' class="weui-input" placeholder="请输入设备型号" value='{{info.xh}}' />
+          </view>
+        </view>
+      </view>
+      <!--设备批次-->
+      <view class="weui-cells__title">设备批次</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input name='sbpc' disabled='{{!editRight}}' class="weui-input" placeholder="" value='{{info.sbpc}}' />
+          </view>
+        </view>
+      </view>
+      <!--设备状况-->
+      <view class="weui-cells__title">设备状况</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_select">
+            <view class="weui-cell__bd">
+                <picker disabled='{{!editRight}}' name='zt' bindchange="bindAccountChange" value="{{infoStateIndex}}" range="{{infoState}}">
+                    <view class="weui-select">{{infoStateValue}}</view>
+                </picker>
+            </view>
+        </view>
+      </view>
+      <!--运行时间-->
+      <view class="weui-cells__title">运行时间（小时）</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input name='yxsj' disabled='{{!editRight}}' class="weui-input" placeholder="" value='{{info.yxsj}}' />
+          </view>
+        </view>
+      </view>
+      <!--备注-->
+      <view class="weui-cells__title">备注</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <textarea disabled='{{!editRight}}' name='bz' class="weui-textarea" placeholder="" value='{{info.bz}}' style="height: 3.3em" />
+          </view>
+        </view>
+      </view>
+      <!--更新时间-->
+      <view class="weui-cells__title">更新时间</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input name='gxsj' disabled='{{!editRight}}' class="weui-input" placeholder="" value='{{info.gxsj}}' />
+          </view>
+        </view>
+      </view>
+      <!--所属站点-->
+      <view class="weui-cells__title" wx:if="{{id}}">所属站点</view>
+      <view class="weui-cells weui-cells_after-title" wx:if="{{id}}">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input name='zdid' disabled='{{!editRight}}' class="weui-input" placeholder="" value='{{info.zdm}}' />
+          </view>
+        </view>
+      </view>
+      <!--other-->
+      <!---->
+      <view class="weui-cells__title">与{{info.mc}}相关的</view>
+      <view class="weui-cells weui-cells_after-title">
+        <navigator url="/pages/sites/parts/parts?sbid={{id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">
+            <view style="display: inline-block; vertical-align: middle">零部件信息</view>
+            <view class="weui-badge" style="margin-left: 5px;">{{info.parts.length}}</view>
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access">查看</view>
+        </navigator>
+        <navigator url="/pages/files/index/index?type=facility&id={{id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">
+            <view style="display: inline-block; vertical-align: middle">存档信息</view>
+            <view class="weui-badge" style="margin-left: 5px;">{{info.files.length}}</view>
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access">查看</view>
+        </navigator>
+      </view>
+      <!--按钮-->
+      <view class="weui-btn-area" wx:if="{{editRight}}">
+          <button class="weui-btn" type="primary" form-type='submit'>确定</button>
+      </view>
+    </form>
+  </view>
+</view>
