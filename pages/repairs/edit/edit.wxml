@@ -99,14 +99,30 @@
       </view>
       <!--是否发布-->
       <view class="weui-cells__title">是否发布</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell weui-cell_switch">
-                <view class="weui-cell__bd">是否发布</view>
-                <view class="weui-cell__ft">
-                    <switch checked='{{published}}' name='fbzt' bindchange="switchChange" />
-                </view>
-            </view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_switch">
+          <view class="weui-cell__bd">是否发布</view>
+          <view class="weui-cell__ft">
+            <switch checked='{{published}}' name='fbzt' bindchange="switchChange" />
+          </view>
         </view>
+      </view>
+      <!--提交时间-->
+      <view class="weui-cells__title">提交时间</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">{{repairs.tjsj}}</view>
+        </view>
+      </view>
+      <!--状态-->
+      <view class="weui-cells__title">状态</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            状态
+          </view>
+        </view>
+      </view>
       <!--other-->
       <!--按钮-->
       <view class="weui-btn-area">

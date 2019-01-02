@@ -483,6 +483,11 @@ Page({
       that.getRepairs();
       //权限设置
       //如果记录人员(jlry) 或 维护人员（whry）是当前登录用户
+      let uname = that.data.userInfo.uname;
+      let right = that.data.userInfo.right.gzwhqx;
+      if (uname == that.data.repairs.jlry || uname == that.data.repairs.whry){
+        
+      }
     }).catch((err) => {
       console.log(err);
     });
