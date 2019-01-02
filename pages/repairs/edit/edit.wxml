@@ -119,7 +119,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell">
           <view class="weui-cell__bd">
-            状态
+            {{repairs.whqd=='已确定'? repairs.shzt : repairs.whqd}}
           </view>
         </view>
       </view>
