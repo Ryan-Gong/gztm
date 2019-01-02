@@ -249,7 +249,6 @@ Page({
     }).then((res) => {
       let data = res.result;
       if (data) {
-        //that.pkgRelationFacility(data);
         let json = [], sb = ['无关联设备'];
         //---设备名称--------
         data.map(function (item, index, array) {
@@ -260,9 +259,8 @@ Page({
           };
           json.push(temp);
           sb.push(item.mc);
-          //return item.mc;
         });
-        console.log(json);
+        //console.log(json);
         //拓展运算符(...)内部使用for...of循环
         //利用ES6的set(Set数据结构，它类似于数组，其成员的值都是唯一的;去重)
         sb = [...new Set(sb)];
@@ -272,13 +270,14 @@ Page({
           facilityIndex: selected ? utils.getKey(selected,sb):0,
           facilityValue: selected,
         });
-        that.getFacilityXHList();
+        that.getFacilityXHList();//读取对应一系列的编号列表
         //that.resetData();//重设表单
       }
     }).catch((err) => {
       console.log(err);
     });
   },
+
   /**
    * 由设备名称读取对应一系列的编号列表
    * selected 已经选择的值，用于修改
@@ -303,44 +302,7 @@ Page({
       });
     }
   },
-  //重组关联的设备
-  //json数据去重
-  pkgRelationFacility: function (jsonData) {
-    var json = [];//去重之后的新的数据放在这里;里面存放用来判断是否一样的name的值
-    var name = jsonData.map(function (item, index, array) {
-      return item.mc;
-    });
-    //拓展运算符(...)内部使用for...of循环
-    name = [...new Set(name)];//利用ES6的set(Set数据结构，它类似于数组，其成员的值都是唯一的;去重)
-    jsonData.map(function (item, index, array) {
 
-    });
-    console.log(name);
-    return;
-    //-----以下是常规算法 去重---------------------
-    for (var i = 0; i < jsonData.length; i++) {
-      var name = jsonData[i]['mc'];//设备名
-      var sbbh = jsonData[i]['sbbh'];//设备编号
-      var repeat = false;//是否重复标识
-      var item = {
-        name: name,
-        serials: []
-      };
-
-      //循环json，读取出name，对比是否存在
-      for (var key in json) {
-        //console.log(key + " : " + JSON.stringify(json[key]));
-        //如果 存放数据json 中 name,相等，说明已经存在
-        if (json[key]['name'] == name) {
-          repeat = true;
-          break;
-        }
-      }
-      //如果不重复，则添加到数组中
-      if (!repeat) json.push(item);
-    }
-    console.log(serials);
-  },
   //重设重置
   resetData: function () {
     let that = this;
@@ -445,16 +407,9 @@ Page({
         cateIndex: utils.getKey(res.result.fl, that.data.cate),
         cateValue: res.result.fl,
         usersIndex: utils.getKey(res.result.jlry, that.data.users),
-        // //关联设备
-        // facility: res.result.sbmc ? ['无关联设备', res.result.sbmc] : ['无关联设备'],
-        // facilityIndex: res.result.sbmc ? 1 : 0,
-        // facilityValue: res.result.sbmc,
-        //设备编号
-        // facilityXH: res.result.sbbh ? ['无关联设备', res.result.sbbh] : ['无关联设备'],
-        // facilityXHIndex: res.result.sbbh ? 1 : 0,
+        
       });
       that.getFacilityBySite(res.result.sbmc);
-      that.getFacilityXHList();
     }).catch((err) => {
       console.log(err);
     });
