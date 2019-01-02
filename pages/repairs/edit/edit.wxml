@@ -10,8 +10,8 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
           <view class="weui-cell__bd">
-            <input name='zdid' disabled='{{disabled}}' value='{{selectedSite.id}}' hidden />
-            <input name='zdname' class="weui-input" placeholder="选择站点" value='{{selectedSite.name}}' bindtap='showModal' />
+            <input name='zdid' value='{{selectedSite.id}}' hidden />
+            <input name='zdname' disabled class="weui-input" placeholder="选择站点" value='{{selectedSite.name}}' bindtap='showModal' />
           </view>
         </view>
       </view>

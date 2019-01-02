@@ -386,7 +386,7 @@ Page({
       method: 'GET',
       data: query,
     }).then((res) => {
-      console.log(res.result);
+      //console.log(res.result);
       that.setData({
         repairs: res.result,
         buildDate: res.result.whsj,
@@ -431,7 +431,7 @@ Page({
     console.log("重组后的数据：" + JSON.stringify(data)); return;
     //验证通过后，保存数据
     http.request({
-      url: app.globalData.ApiUrl + '/repairs',
+      url: app.globalData.ApiUrl + '/repairs/' + that.data.id,
       method: 'POST',
       data: {
         OTAId: that.data.userInfo.uname,
@@ -481,6 +481,8 @@ Page({
       //读取登录用户的相关的事务
       that.getUsers();
       that.getRepairs();
+      //权限设置
+      //如果记录人员(jlry) 或 维护人员（whry）是当前登录用户
     }).catch((err) => {
       console.log(err);
     });
