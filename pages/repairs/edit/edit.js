@@ -226,6 +226,7 @@ Page({
       that.hideModal();
     }, 1000);
   },
+
   /**
    * 绑定站点关联的设备
    * sbmc 已经选择的值【设备名】，用于修改
@@ -272,7 +273,6 @@ Page({
           facilityValue: sbmc,
         });
         that.getFacilityXHList(sbbh);//读取对应一系列的编号列表
-        //that.resetData();//重设表单
       }
     }).catch((err) => {
       console.log(err);
@@ -304,17 +304,6 @@ Page({
     }
   },
 
-  //重设重置
-  resetData: function () {
-    let that = this;
-    that.setData({
-      //关联设备
-      facilityIndex: 0,
-      facilityValue: '',
-      //设备编号
-      facilityXHIndex: 0,
-    });
-  },
   selectFacility: function (e) {
     var that = this;
     this.setData({
@@ -371,6 +360,7 @@ Page({
     };
     return true;
   },
+
   //获取当前页url
   getCurrentPageUrl: function () {
     var pages = getCurrentPages() //获取加载的页面
