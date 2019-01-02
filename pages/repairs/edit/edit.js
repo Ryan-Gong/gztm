@@ -228,7 +228,7 @@ Page({
   },
   /**
    * 绑定站点关联的设备
-   * selected 已经选择的值，用于修改s
+   * selected 已经选择的值，用于修改
    */
   getFacilityBySite: function (selected='') {
     let that = this;
