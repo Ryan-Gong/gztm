@@ -28,6 +28,9 @@ Page({
     },
     searchSiteResult: {}, //搜索站点信息
     selectedSite: { id: '', name: '' },//已选择的站点信息
+    //审核
+    review: ["通过", "不通过"],
+    reviewIndex:0,
     //维护人员资料
     users: ['请选择'],
     usersIndex: 0,
@@ -67,6 +70,12 @@ Page({
     this.setData({
       cateIndex: e.detail.value,
       cateValue: this.data.cate[e.detail.value]
+    })
+  },
+  //选择审核状态
+  bindReviewChange:function(e){
+    this.setData({
+      reviewIndex: e.detail.value
     })
   },
   //显示对话框

@@ -114,6 +114,26 @@
           <view class="weui-cell__bd">{{repairs.tjsj}}</view>
         </view>
       </view>
+      <!--审核结果-->
+      <view class="weui-cells__title">审核结果</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_select">
+            <view class="weui-cell__bd">
+                <picker name='shzt' bindchange="bindReviewChange" value="{{reviewIndex}}" range="{{review}}">
+                    <view class="weui-select">{{review[reviewIndex]}}</view>
+                </picker>
+            </view>
+        </view>
+      </view>
+      <!--审核备注-->
+      <view class="weui-cells__title">审核备注</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <textarea  name='zj' class="weui-textarea" value='{{repairs.shbz}}' style="height: 3.3em" placeholder="此处填写审核备注，主要是未通过的原因" />
+          </view>
+        </view>
+      </view>
       <!--状态-->
       <view class="weui-cells__title">状态</view>
       <view class="weui-cells weui-cells_after-title">
