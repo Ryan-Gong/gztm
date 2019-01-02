@@ -448,7 +448,7 @@ Page({
         // facilityXH: res.result.sbbh ? ['无关联设备', res.result.sbbh] : ['无关联设备'],
         // facilityXHIndex: res.result.sbbh ? 1 : 0,
       });
-      that.getFacilityBySite();
+      that.getFacilityBySite(res.result.sbmc);
       that.getFacilityXHList();
     }).catch((err) => {
       console.log(err);
