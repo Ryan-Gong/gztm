@@ -12,6 +12,7 @@ Page({
   data: {
     id: '',
     hasError: false,
+    loading:true,
     popErrorMsg: '',
     userInfo: '',//用户登录信息
     repairs: '', //维护记录
@@ -471,15 +472,18 @@ Page({
   },
 
 /**
- * 权限设置
+ * 权限设置(用于等待异步请求处理结果)
  * 定时器setInterval
  */
   setRight:function(){
     var that = this;
+    var times = 0;//记录时间
     var _repairs = that.data.repairs;
     var _userInfo = that.data.userInfo;
     var i = setInterval(function () {
+      times++;
       if (_repairs && _userInfo) {
+        console.log(times);
         //如果记录人员(jlry) 或 维护人员（whry）是当前登录用户
         let right = _userInfo.right.gzwhqx;
         let uname = _userInfo.uname;
@@ -492,7 +496,8 @@ Page({
           _action = '审核';
         }
         that.setData({
-          action: _action
+          action: _action,
+          loading:false
         });
         clearInterval(i);//如果有数据，则 清除定时器
       } else {
