@@ -27,11 +27,9 @@ Page({
     px2rpx: 2,
     windowWidth: 375,//屏幕可用宽度
     windowHeight: '',//屏幕可用高度
-    isHideLoadMore: true,//是否隐藏加载提示
-    isComplete: false,//是否全部加载完毕
 
-    endTipHidden: false,
-    endTip: '正在加载',
+    endTipHidden: false,//是否隐藏加载提示
+    endTip: '正在加载', //是否全部加载完毕
 
     list: {},//把所有子项的数据都放在list里面
     curListId: 0, //滑动到底部时，我们根据curListId知道当前需要请求那个对象
@@ -66,7 +64,7 @@ Page({
   //切换导航（包含滑动swiper和切换导航跳转）
   switchNav: function (index) {
     let that = this;
-    if (index && that.data.navbarActiveIndex == index) return;
+    //if (index && that.data.navbarActiveIndex == index) return;
     // 设置data属性中的navbarActiveIndex为当前点击的navbar
     that.setData({
       navbarActiveIndex: index
@@ -90,22 +88,6 @@ Page({
       }, 1500);//1.5秒的定时器
     }
     return;
-    //---以下是老的方法；暂时不使用-----
-    if (!that.data.isComplete) {
-      let query = that.data.query;//保存在另一个变量中
-      //每次触发上拉事件，把pageIndex+1
-      query.pageIndex = that.data.query.pageIndex + 1;
-      that.setData({
-        query: query,
-        isHideLoadMore: false,//显示：正在加载
-      });
-      console.log(that.data.query);
-      //模拟加载--期间为了显示正在加载中的效果-模拟网络延迟
-      setTimeout(() => {
-        //网络返回请求
-        that.getList(cid);
-      }, 1500);//1.5秒的定时器
-    };
   },
 
   //滚动时触发-滚动记录之前的滚动位置
@@ -274,7 +256,7 @@ Page({
       });
     }).then((res) => {
       //console.log("第2步：登录用户成功后相关的事务");
-      //that.getNav(index);
+      that.getNav(index);
     }).then((res) => {
 
     }).catch((err) => {
