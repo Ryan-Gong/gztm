@@ -501,18 +501,20 @@ Page({
       var i = setInterval(function () {
         if (info){
           clearInterval(i);//如果有数据，则 清除定时器
+        }else{
+          info = that.data.repairs;
         }
-      });
+      }, 1000);//每隔1秒时间便执行
       //权限设置
       //如果记录人员(jlry) 或 维护人员（whry）是当前登录用户
       let right = that.data.userInfo.right.gzwhqx;
       let uname = that.data.userInfo.uname;
       let _action = that.data.action;
       //如果当前登录用户==记录人员(jlry) 则，修改
-      if (uname == that.data.repairs.jlry) _action = '修改';
+      if (uname == info.jlry) _action = '修改';
       //如果当前登录用户==维护人员（whry） 则，确认
-      if (uname == that.data.repairs.whry) _action = '确认';
-      if (right == '编辑' && that.data.repairs.whqd =='已确定'){
+      if (uname == info.whry) _action = '确认';
+      if (right == '编辑' && info.whqd =='已确定'){
         _action = '审核';
       }
       that.setData({
