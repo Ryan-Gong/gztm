@@ -46,6 +46,10 @@ Page({
    * 点击导航栏
    */
   onNavBarTap: function (e) {
+    // 滚动到顶部
+    wx.pageScrollTo({
+      scrollTop: 0
+    });
     // 获取点击的navbar的index
     let navbarTapIndex = e.currentTarget.dataset.navbarIndex;
     // let index = e.currentTarget.dataset.index;
@@ -85,7 +89,7 @@ Page({
       setTimeout(() => {
         //网络返回请求
         that.getList(cid);
-      }, 1500);//1.5秒的定时器
+      }, 1500);//1.5秒的延时器
     }
     return;
   },
@@ -97,7 +101,7 @@ Page({
   scroll: function (e) {
     let that = this;
     setTimeout(function () {
-      console.log(e.detail.scrollTop);
+      //console.log(e.detail.scrollTop);
       let list = that.data.list;
       if (list[that.data.curListId]) {
         list[that.data.curListId].scrollTop = e.detail.scrollTop;
@@ -114,7 +118,7 @@ Page({
    * 选项卡类别的对应数据库的ID
    */
   getList: function (cid) {
-    //console.log('cc:' + cid);
+    //console.log('cc:' + cid);return;
     let that = this;
     that.setData({
       curListId: cid
@@ -161,7 +165,7 @@ Page({
         that.setData({
           list
         });
-        console.log(that.data.list);
+        console.log(list);
       }).catch((err) => {
         console.log(err);
       });
@@ -174,7 +178,7 @@ Page({
           method: 'GET',
           data: query,
         }).then((res) => {
-          //console.log(res);
+          console.log(res);
           let obj = {};
           let result = res.result;
           let ds = res.result.result;
@@ -194,7 +198,7 @@ Page({
           that.setData({
             list
           });
-          console.log(that.data.list);
+          console.log(list);
         }).catch((err) => {
           console.log(err);
         });
@@ -209,7 +213,7 @@ Page({
     let that = this;
     wx.getSystemInfo({
       success: function (res) {
-        console.log(res);
+        //console.log(res);
         that.setData({
           windowHeight: res.windowHeight,
           windowWidth: res.windowWidth,
@@ -223,21 +227,19 @@ Page({
   getNav: function (index) {
     //https://developers.weixin.qq.com/miniprogram/dev/api/SelectorQuery.selectAll.html
     let that = this;
-    //获取导航的初始位置
-    const query = wx.createSelectorQuery().in(this);//创建节点查询器 query
-    //选择class=navbar-item的节点,获取节点位置信息的查询请求
-    query.selectAll('.navbar-item').boundingClientRect(function (res) {
-      //console.log(res);
-      that.setData({
-        navPosition: res[0]
-      });
-      if (index >= 4) {
-        that.setData({
-          scrollLeft: res[0][index].left
-        })
-      }
-    }).exec();
-    //query.selectViewport().scrollOffset();//获取页面滑动位置的查询请求
+    // //获取导航的初始位置
+    // const query = wx.createSelectorQuery().in(this);//创建节点查询器 query
+    // //选择class=navbar-item的节点,获取节点位置信息的查询请求
+    // query.selectAll('.navbar-item').boundingClientRect(function (res) {
+    //   that.setData({
+    //     navPosition: res[0]
+    //   });
+    //   if (index >= 4) {
+    //     that.setData({
+    //       scrollLeft: res[0][index].left
+    //     })
+    //   }
+    // }).exec();
     that.getList(that.data.navbarTitle[index].columnId);
   },
 
@@ -258,8 +260,6 @@ Page({
     }).then((res) => {
       //console.log("第2步：登录用户成功后相关的事务");
       that.getNav(index);
-    }).then((res) => {
-
     }).catch((err) => {
       console.log(err);
     });
