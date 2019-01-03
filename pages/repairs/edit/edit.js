@@ -439,7 +439,7 @@ Page({
     data.whry = that.data.users[data.whry];
     //删除json对象的不相干的属性
     delete data.zdname; //删除data json对象的zdname属性
-    //console.log("重组后的数据：" + JSON.stringify(data)); return;
+    console.log("重组后的数据：" + JSON.stringify(data)); return;
     //验证通过后，保存数据
     http.request({
       url: app.globalData.ApiUrl + '/repairs/' + that.data.id,
@@ -494,17 +494,30 @@ Page({
       //读取登录用户的相关的事务
       that.getUsers();
       that.getRepairs();
+      setTimeout(function () {
+        console.log('88' + that.data.repairs);
+      }, 1000);
+      var info = that.data.repairs;
+      var i = setInterval(function () {
+        if (info){
+          clearInterval(i);//如果有数据，则 清除定时器
+        }
+      });
       //权限设置
       //如果记录人员(jlry) 或 维护人员（whry）是当前登录用户
       let right = that.data.userInfo.right.gzwhqx;
-      //let uname = that.data.userInfo.uname;
-      //if (uname == that.data.repairs.jlry || uname == that.data.repairs.whry){ }
-      if (right == '编辑' && !that.data.editRight){
-        that.setData({
-          showReview:true,
-          action:'审核'
-        });
+      let uname = that.data.userInfo.uname;
+      let _action = that.data.action;
+      //如果当前登录用户==记录人员(jlry) 则，修改
+      if (uname == that.data.repairs.jlry) _action = '修改';
+      //如果当前登录用户==维护人员（whry） 则，确认
+      if (uname == that.data.repairs.whry) _action = '确认';
+      if (right == '编辑' && that.data.repairs.whqd =='已确定'){
+        _action = '审核';
       }
+      that.setData({
+        action: _action
+      });
     }).catch((err) => {
       console.log(err);
     });
