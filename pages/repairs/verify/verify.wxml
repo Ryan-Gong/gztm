@@ -53,7 +53,7 @@
                 </view>
                 <!--按钮whqd-->
                 <view class="weui-form-preview__ft">
-                  <navigator url="/pages/repairs/edit/edit?id={{rep.Id}}&m=edit" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">{{rep.whqd=='待审核'?'点击审核':'查看详情'}}</navigator>
+                  <navigator url="/pages/repairs/edit/edit?id={{rep.Id}}&m=edit" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">{{rep.shzt=='待审核'?'点击审核':'查看详情'}}</navigator>
                 </view>
                 <!---->
               </view>

@@ -107,6 +107,7 @@ Page({
       }
     }, 300);
   },
+
   /**
    * 请求列表
    * cid=that.data.navbarTitle[index].columnId
@@ -123,7 +124,7 @@ Page({
     let query = {
       OTAId: that.data.userInfo.uname,
       Parameter: {
-        mode: 'confirm',
+        mode: 'verify',
         keys: '', //关键词
         columnId: cid,//或者用 that.data.curListId,
         pageSize: that.data.query.pageSize,
