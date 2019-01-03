@@ -435,11 +435,12 @@ Page({
     if (data.sbmc == '无关联设备') data.sbmc = '';
     data.sbbh = that.data.facilityXH[data.sbbh];
     if (data.sbbh == '无关联设备') data.sbbh = '';
-    data.fl = that.data.cate[data.fl];
+    data.fl = that.data.cate[data.fl]; 
+    if (data.shzt) data.shzt = that.data.review[data.shzt];
     data.whry = that.data.users[data.whry];
     //删除json对象的不相干的属性
     delete data.zdname; //删除data json对象的zdname属性
-    console.log("重组后的数据：" + JSON.stringify(data)); return;
+    //console.log("重组后的数据：" + JSON.stringify(data)); return;
     //验证通过后，保存数据
     http.request({
       url: app.globalData.ApiUrl + '/repairs/' + that.data.id,
@@ -452,14 +453,13 @@ Page({
     }).then((res) => {
       console.log(res);
       let _url = "/pages/msg/msg_fail";
-      //res.code==200 && res.result
-      if (1 == 1) {
+      if (res.code == 200 && res.result) {
         _url = "/pages/msg/msg_success";
         //_url += '?url=/' + that.getCurrentPageUrl(); //当前页面url;
         _url += '?url=/pages/repairs/index/index'; //指定其他URL
       }
       //navigateTo/redirectTo
-      console.log(_url);
+      //console.log(_url);
       //关闭当前页面，跳转到应用内的某个页面
       wx.navigateTo({
         url: _url
@@ -471,10 +471,10 @@ Page({
 
   },
 
-/**
- * 权限设置(用于等待异步请求处理结果)
- * 定时器setInterval
- */
+  /**
+  * 权限设置(用于等待异步请求处理结果)
+  * 定时器setInterval
+  */
   setRight:function(){
     var that = this;
     var times = 0;//记录时间
@@ -531,7 +531,7 @@ Page({
       //读取登录用户的相关的事务
       that.getUsers();
       that.getRepairs();
-      //权限设置
+      //权限设置(定时器扫描，等待异步请求处理结果)
       that.setRight();
     }).catch((err) => {
       console.log(err);
