@@ -28,6 +28,7 @@ Page({
     },
     searchSiteResult: {}, //搜索站点信息
     selectedSite: { id: '', name: '' },//已选择的站点信息
+    action:'查看',//操作动作【查看、确认、审核、修改】
     //审核
     review: ["通过", "不通过"],
     reviewIndex:0,
@@ -438,11 +439,11 @@ Page({
     data.whry = that.data.users[data.whry];
     //删除json对象的不相干的属性
     delete data.zdname; //删除data json对象的zdname属性
-    console.log("重组后的数据：" + JSON.stringify(data)); return;
+    //console.log("重组后的数据：" + JSON.stringify(data)); return;
     //验证通过后，保存数据
     http.request({
       url: app.globalData.ApiUrl + '/repairs/' + that.data.id,
-      method: 'POST',
+      method: 'PUT',
       data: {
         OTAId: that.data.userInfo.uname,
         Parameter: data,
@@ -501,6 +502,7 @@ Page({
       if (right == '编辑' && !that.data.editRight){
         that.setData({
           showReview:true,
+          action:'审核'
         });
       }
     }).catch((err) => {

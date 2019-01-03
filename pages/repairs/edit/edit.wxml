@@ -3,6 +3,7 @@
   <view class="page__hd"></view>
   <view class="page__bd">
     <form bindsubmit="formSubmit">
+      <input name='action' value='{{action}}' hidden />
       <!--错误提示-->
       <view class="weui-toptips weui-toptips_warn" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
       <!--关联站点-->
