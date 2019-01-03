@@ -125,7 +125,7 @@
         </view>
       </view>
       <!--有审核权限才显示-->
-      <view wx:if="{{showReview}}">
+      <view wx:if='{{action=="审核"}}'>
         <!--审核结果-->
         <view class="weui-cells__title">审核结果</view>
         <view class="weui-cells weui-cells_after-title">
@@ -149,7 +149,7 @@
       </view>
       <!--other-->
       <!--按钮-->
-      <view class="weui-btn-area">
+      <view class="weui-btn-area" wx:if='{{action!="查看"}}'>
           <button class="weui-btn" type="primary" form-type='submit'>确定</button>
       </view>
     </form>

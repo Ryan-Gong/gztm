@@ -51,7 +51,6 @@ Page({
 
     buildDate: '请选择',
     editRight: true,//是否有编辑权限
-    showReview:false, //显示审核
     published: false, //是否发布
     animationData: {},
     showModalStatus: false,
@@ -489,7 +488,7 @@ Page({
         if (uname == _repairs.jlry) _action = '修改';
         //如果当前登录用户==维护人员（whry） 则，确认
         if (uname == _repairs.whry) _action = '确认';
-        if (right == '编辑' && info.whqd == '已确定') {
+        if (right == '编辑' && _repairs.whqd == '已确定') {
           _action = '审核';
         }
         that.setData({
