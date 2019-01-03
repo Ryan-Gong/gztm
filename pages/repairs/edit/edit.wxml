@@ -114,7 +114,17 @@
           <view class="weui-cell__bd">{{repairs.tjsj}}</view>
         </view>
       </view>
-      <!--审核结果-->
+      <!--状态-->
+      <view class="weui-cells__title">状态</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            {{repairs.whqd=='已确定'? repairs.shzt : repairs.whqd}}
+          </view>
+        </view>
+      </view>
+      <view>
+        <!--审核结果-->
       <view class="weui-cells__title">审核结果</view>
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_select">
@@ -134,14 +144,6 @@
           </view>
         </view>
       </view>
-      <!--状态-->
-      <view class="weui-cells__title">状态</view>
-      <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell">
-          <view class="weui-cell__bd">
-            {{repairs.whqd=='已确定'? repairs.shzt : repairs.whqd}}
-          </view>
-        </view>
       </view>
       <!--other-->
       <!--按钮-->

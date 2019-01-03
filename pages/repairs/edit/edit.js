@@ -475,9 +475,11 @@ Page({
   onLoad: function (options) {
     var that = this;
     let id = options.id;
+    
     this.setData({
       id: id,
-      editRight: options.m=='view'?false:true,
+      editRight: (options.m && options.m == 'view') ? false : true,
+      disabled: (options.m && options.m == 'view') ? true : false,
     });
     //检查用户是否登录
     user.chklogin().then((res) => {
