@@ -50,7 +50,7 @@ Page({
 
     buildDate: '请选择',
     disabled: false,//是否禁用
-    editRight: false,//是否有编辑权限
+    editRight: true,//是否有编辑权限
     published: false, //是否发布
     animationData: {},
     showModalStatus: false,
@@ -476,7 +476,8 @@ Page({
     var that = this;
     let id = options.id;
     this.setData({
-      id: id
+      id: id,
+      editRight: options.m=='view'?false:true,
     });
     //检查用户是否登录
     user.chklogin().then((res) => {
