@@ -262,7 +262,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this;
+    let index = options.index || 0;
+    that.getSystem();
+    //检查用户是否登录
+    user.chklogin().then((res) => {
+      //如果已经登录，从缓存中把登录信息赋值给userInfo
+      //console.log("第1步：处理登录信息");
+      that.setData({
+        userInfo: res.data
+      });
+    }).then((res) => {
+      //console.log("第2步：登录用户成功后相关的事务");
+      //that.getNav(index);
+    }).then((res) => {
 
+    }).catch((err) => {
+      console.log(err);
+    });
   },
 
   /**
