@@ -11,7 +11,7 @@
         <view class="weui-cell weui-cell_input">
           <view class="weui-cell__bd">
             <input name='zdid' value='{{selectedSite.id}}' hidden />
-            <input name='zdname' disabled class="weui-input" placeholder="选择站点" value='{{selectedSite.name}}' bindtap='showModal' />
+            <input name='zdname' disabled='{{!editRight}}' class="weui-input" placeholder="选择站点" value='{{selectedSite.name}}' bindtap='showModal' />
           </view>
         </view>
       </view>
@@ -20,7 +20,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
           <view class="weui-cell__bd">
-            <input name='bt' class="weui-input" placeholder="此处输入标题" value='{{repairs.bt}}' />
+            <input name='bt' disabled='{{!editRight}}' class="weui-input" placeholder="此处输入标题" value='{{repairs.bt}}' />
           </view>
         </view>
       </view>
@@ -29,7 +29,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_select">
             <view class="weui-cell__bd">
-                <picker name='fl' bindchange="bindTypeChange" value="{{cateIndex}}" range="{{cate}}">
+                <picker disabled='{{!editRight}}' name='fl' bindchange="bindTypeChange" value="{{cateIndex}}" range="{{cate}}">
                     <view class="weui-select">{{cate[cateIndex]}}</view>
                 </picker>
             </view>
@@ -40,7 +40,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_select">
             <view class="weui-cell__bd">
-                <picker name='whry' bindchange="bindUser" value="{{usersIndex}}" range="{{users}}">
+                <picker disabled='{{!editRight}}' name='whry' bindchange="bindUser" value="{{usersIndex}}" range="{{users}}">
                     <view class="weui-select">{{users[usersIndex]}}</view>
                 </picker>
             </view>
@@ -51,7 +51,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_select">
             <view class="weui-cell__bd">
-                <picker name='sbmc' bindchange="selectFacility" value="{{facilityIndex}}" range="{{facility}}">
+                <picker disabled='{{!editRight}}' name='sbmc' bindchange="selectFacility" value="{{facilityIndex}}" range="{{facility}}">
                     <view class="weui-select">{{facility[facilityIndex]}}</view>
                 </picker>
             </view>
@@ -62,7 +62,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_select">
             <view class="weui-cell__bd">
-                <picker name='sbbh' bindchange="selectFacilityXH" value="{{facilityXHIndex}}" range="{{facilityXH}}">
+                <picker disabled='{{!editRight}}' name='sbbh' bindchange="selectFacilityXH" value="{{facilityXHIndex}}" range="{{facilityXH}}">
                     <view class="weui-select">{{facilityXH[facilityXHIndex]}}</view>
                 </picker>
             </view>
@@ -73,7 +73,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
           <view class="weui-cell__bd">
-            <picker name='whsj' mode="date" value="{{buildDate}}" start="2017-09-01" end="2030-09-01" bindchange="bindDateChange">
+            <picker disabled='{{!editRight}}' name='whsj' mode="date" value="{{buildDate}}" start="2017-09-01" end="2030-09-01" bindchange="bindDateChange">
                 <view class="weui-input">{{buildDate}}</view>
             </picker>
           </view>
@@ -84,7 +84,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell">
           <view class="weui-cell__bd">
-            <textarea  name='ms' class="weui-textarea" value='{{repairs.ms}}' style="height: 3.3em" placeholder="此处输入描述" />
+            <textarea disabled='{{!editRight}}' name='ms' class="weui-textarea" value='{{repairs.ms}}' style="height: 3.3em" placeholder="此处输入描述" />
           </view>
         </view>
       </view>
@@ -93,7 +93,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell">
           <view class="weui-cell__bd">
-            <textarea  name='zj' class="weui-textarea" value='{{repairs.zj}}' style="height: 3.3em" placeholder="此处输入总结" />
+            <textarea disabled='{{!editRight}}' name='zj' class="weui-textarea" value='{{repairs.zj}}' style="height: 3.3em" placeholder="此处输入总结" />
           </view>
         </view>
       </view>
@@ -103,7 +103,7 @@
         <view class="weui-cell weui-cell_switch">
           <view class="weui-cell__bd">是否发布</view>
           <view class="weui-cell__ft">
-            <switch checked='{{published}}' name='fbzt' bindchange="switchChange" />
+            <switch disabled='{{!editRight}}' checked='{{published}}' name='fbzt' bindchange="switchChange" />
           </view>
         </view>
       </view>
@@ -123,27 +123,28 @@
           </view>
         </view>
       </view>
-      <view>
+      <!--有审核权限才显示-->
+      <view wx:if="{{showReview}}">
         <!--审核结果-->
-      <view class="weui-cells__title">审核结果</view>
-      <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell weui-cell_select">
-            <view class="weui-cell__bd">
-                <picker name='shzt' bindchange="bindReviewChange" value="{{reviewIndex}}" range="{{review}}">
-                    <view class="weui-select">{{review[reviewIndex]}}</view>
-                </picker>
-            </view>
-        </view>
-      </view>
-      <!--审核备注-->
-      <view class="weui-cells__title">审核备注</view>
-      <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell">
-          <view class="weui-cell__bd">
-            <textarea  name='zj' class="weui-textarea" value='{{repairs.shbz}}' style="height: 3.3em" placeholder="此处填写审核备注，主要是未通过的原因" />
+        <view class="weui-cells__title">审核结果</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_select">
+              <view class="weui-cell__bd">
+                  <picker name='shzt' bindchange="bindReviewChange" value="{{reviewIndex}}" range="{{review}}">
+                      <view class="weui-select">{{review[reviewIndex]}}</view>
+                  </picker>
+              </view>
           </view>
         </view>
-      </view>
+        <!--审核备注-->
+        <view class="weui-cells__title">审核备注</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell">
+            <view class="weui-cell__bd">
+              <textarea  name='zj' class="weui-textarea" value='{{repairs.shbz}}' style="height: 3.3em" placeholder="此处填写审核备注，主要是未通过的原因" />
+            </view>
+          </view>
+        </view>
       </view>
       <!--other-->
       <!--按钮-->

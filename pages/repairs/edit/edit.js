@@ -49,8 +49,8 @@ Page({
     pkgRelation: [], //关联设备
 
     buildDate: '请选择',
-    disabled: false,//是否禁用
     editRight: true,//是否有编辑权限
+    showReview:false, //显示审核
     published: false, //是否发布
     animationData: {},
     showModalStatus: false,
@@ -407,6 +407,7 @@ Page({
         cateIndex: utils.getKey(res.result.fl, that.data.cate),
         cateValue: res.result.fl,
         usersIndex: utils.getKey(res.result.jlry, that.data.users),
+        reviewIndex: utils.getKey(res.result.shzt, that.data.review),
       });
       that.getFacilityBySite(res.result.sbmc, res.result.sbbh);
     }).catch((err) => {
@@ -478,8 +479,7 @@ Page({
     
     this.setData({
       id: id,
-      editRight: (options.m && options.m == 'view') ? false : true,
-      disabled: (options.m && options.m == 'view') ? true : false,
+      editRight: (options.m && options.m == 'view') ? false : true
     });
     //检查用户是否登录
     user.chklogin().then((res) => {
@@ -495,10 +495,13 @@ Page({
       that.getRepairs();
       //权限设置
       //如果记录人员(jlry) 或 维护人员（whry）是当前登录用户
-      let uname = that.data.userInfo.uname;
       let right = that.data.userInfo.right.gzwhqx;
-      if (uname == that.data.repairs.jlry || uname == that.data.repairs.whry){
-        
+      //let uname = that.data.userInfo.uname;
+      //if (uname == that.data.repairs.jlry || uname == that.data.repairs.whry){ }
+      if (right == '编辑' && !that.data.editRight){
+        that.setData({
+          showReview:true,
+        });
       }
     }).catch((err) => {
       console.log(err);
