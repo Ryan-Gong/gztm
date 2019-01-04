@@ -46,6 +46,10 @@ Page({
    * 点击导航栏
    */
   onNavBarTap: function (e) {
+    //清空list,重新获取数据
+    this.setData({
+      list:{},
+    });
     // 滚动到顶部
     wx.pageScrollTo({
       scrollTop: 0
@@ -88,7 +92,7 @@ Page({
       //模拟加载--期间为了显示正在加载中的效果-模拟网络延迟
       setTimeout(() => {
         //网络返回请求
-        that.getList(cid);
+        //that.getList(cid);
       }, 1500);//1.5秒的延时器
     }
     return;
