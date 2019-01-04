@@ -58,9 +58,8 @@ Page({
   * 定时器setInterval
   */
   initData: function () {
-    that.getRepairs();//获取维护记录
-
     var that = this;
+    that.getRepairs();//获取维护记录
     var times = 0;//初始化/读取数据所消耗的时间
     var _repairs = that.data.repairs;
     var _userInfo = that.data.userInfo;
