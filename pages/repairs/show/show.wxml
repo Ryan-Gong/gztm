@@ -125,11 +125,10 @@
         </view>
       </view>
       <!--other-->
-      <!---->
-      <!--按钮-->
-      <view class="weui-btn-area" wx:if="{{editRight}}">
-          <button class="weui-btn" type="primary" form-type='submit'>确定</button>
-      </view>
     </form>
+  </view>
+  <!--添加按钮 悬浮于底端-->
+  <view class='fixed-bottom'>
+    <button type="primary" bindtap="edit">编辑</button> 
   </view>
 </view>

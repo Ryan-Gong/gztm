@@ -80,6 +80,13 @@ Page({
     }, 1000);//每隔1秒时间便执行
   },
 
+  //编辑修改
+  edit: function () {
+    wx.navigateTo({
+      url: '/pages/repairs/edit/edit?id=' + this.data.id+'&m=edit',
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
