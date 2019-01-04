@@ -59,20 +59,20 @@ Page({
   */
   initData: function () {
     var that = this;
-    var times = 0;//记录时间
+    var times = 0;//初始化/读取数据所消耗的时间
     var _repairs = that.data.repairs;
     var _userInfo = that.data.userInfo;
     var i = setInterval(function () {
       times++;
+      //如果data中repairs日志和userInfo登录用户有数据
       if (_repairs && _userInfo) {
         console.log(times);
-        
         that.setData({
-          loading: false
+          loading: false, //不显示加载条
         });
         clearInterval(i);//如果有数据，则 清除定时器
       } else {
-        //继续 从 data 中 读取 repairs的值
+        //否则，继续 从 data 中 读取 repairs的值
         _repairs = that.data.repairs;
         _userInfo = that.data.userInfo;
       }
