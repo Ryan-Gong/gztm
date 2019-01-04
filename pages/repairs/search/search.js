@@ -68,7 +68,8 @@ Page({
     wx.pageScrollTo({
       scrollTop: 0
     });
-    //重置查询条件
+    //查询数据
+    that.getList();
   },
 
   /**
@@ -152,6 +153,39 @@ Page({
     }
     //---------
 
+  },
+
+  //滚动到底部触发事件
+  loadmore: function (e) {
+    let that = this;
+    let list = that.data.list;
+    //如果还有数据
+    if (list.pageIndex < list.pageCount) {
+      //模拟加载--期间为了显示正在加载中的效果-模拟网络延迟
+      setTimeout(() => {
+        //网络返回请求
+        that.getList();
+      }, 1500);//1.5秒的延时器
+    }
+    return;
+  },
+
+  //滚动时触发-滚动记录之前的滚动位置
+  // 在滚动的过程中，不断的记录更新每一个子项它最后滚动到的位置，
+  // 下次进入这一屏，就看看数据里面有没有这个滚动值，没有的话，就是第一次进入，默认为0，
+  // 如果有值，说明之前我们已经滚动过一次，则赋值给scroll-view的scroll-top
+  scroll: function (e) {
+    let that = this;
+    setTimeout(function () {
+      //console.log(e.detail.scrollTop);
+      let list = that.data.list;
+      if (list) {
+        list.scrollTop = e.detail.scrollTop;
+        that.setData({
+          list
+        })
+      }
+    }, 300);
   },
 
   //获取屏幕高度/宽度
