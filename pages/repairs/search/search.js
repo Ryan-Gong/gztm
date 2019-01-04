@@ -27,7 +27,7 @@ Page({
     endTipHidden: false,  //是否隐藏加载提示
     endTip: '正在加载', //是否全部加载完毕
 
-    list: {}, //把所有子项的数据都放在list里面
+    list: '', //把所有子项的数据都放在list里面
   },
 
   /**
@@ -92,6 +92,9 @@ Page({
       Signature: ''
     };
     //如果list为空【即第一次访问前，暂无数据】
+    //判断对象是否为空:ES6的新方法, 返回值也是对象中属性名组成的数组
+    // var _data = Object.keys(list);
+    // if (_data.length == 0) {
     if (!list) {
       query.Parameter.pageIndex = 1;
       //从API接口中查询数据
