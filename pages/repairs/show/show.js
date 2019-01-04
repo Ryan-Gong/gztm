@@ -13,10 +13,20 @@ Page({
     id: '',
     popErrorMsg: '',
     loading: true,
-    repairs: '',//维护信息
-    
+    userInfo: '',//用户登录信息
+    repairs: '', //维护记录
+    //请求参数 query
+    query: {
+      OTAId: "",
+      Parameter: {
+        keys: '',
+        pageIndex: 1,
+        pageSize: 10,
+      },
+      Signature: ""
+    },
   },
-  
+
   /**
    * 获取维护记录
    */
@@ -56,19 +66,8 @@ Page({
       times++;
       if (_repairs && _userInfo) {
         console.log(times);
-        //如果记录人员(jlry) 或 维护人员（whry）是当前登录用户
-        let right = _userInfo.right.gzwhqx;
-        let uname = _userInfo.uname;
-        let _action = that.data.action;
-        //如果当前登录用户==记录人员(jlry) 则，修改
-        if (uname == _repairs.jlry) _action = '修改';
-        //如果当前登录用户==维护人员（whry） 则，确认
-        if (uname == _repairs.whry) _action = '确认';
-        if (right == '编辑' && _repairs.whqd == '已确定') {
-          _action = '审核';
-        }
+        
         that.setData({
-          action: _action,
           loading: false
         });
         clearInterval(i);//如果有数据，则 清除定时器
@@ -79,7 +78,7 @@ Page({
       }
     }, 1000);//每隔1秒时间便执行
   },
-  
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -90,15 +89,13 @@ Page({
     });
     //检查用户是否登录
     user.chklogin().then((res) => {
-      //如果已经登录，从缓存中把登录信息赋值给userInfo
-      console.log("第1步：读取登录信息");
+      //console.log("第1步：如果已经登录，从缓存中把登录信息赋值给userInfo");
       that.setData({
         userInfo: res.data
       });
     }).then((res) => {
-      console.log("第2步：读取登录用户的相关的事务");
+      //console.log("第2步：读取登录用户的相关的事务");
       //读取登录用户的相关的事务
-      that.getUsers();
       that.getRepairs();
       //权限设置(定时器扫描，等待异步请求处理结果)
       that.setRight();
