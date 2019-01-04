@@ -70,9 +70,10 @@
                 <view class="weui-form-preview__value">{{rep.shzt}}/{{rep.whqd}}</view>
               </view>
             </view>
-            <!--按钮whqd-->
+            <!--按钮-->
             <view class="weui-form-preview__ft">
-              <navigator url="/pages/repairs/edit/edit?id={{rep.Id}}&m=edit" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">{{(rep.shzt=='待审核' && rep.whqd=='已确定') ? '点击审核' : '查看详情'}}</navigator>
+              <navigator url="" class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">查看详情</navigator>
+              <navigator url="/pages/repairs/edit/edit?id={{rep.Id}}&m=edit" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">编辑</navigator>
             </view>
             <!---->
           </view>
