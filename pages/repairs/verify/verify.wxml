@@ -50,6 +50,10 @@
                     <view class="weui-form-preview__label">提交时间</view>
                     <view class="weui-form-preview__value">{{rep.tjsj}}</view>
                   </view>
+                  <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">状态</view>
+                    <view class="weui-form-preview__value">{{rep.shzt}}/{{rep.whqd}}</view>
+                  </view>
                 </view>
                 <!--按钮whqd-->
                 <view class="weui-form-preview__ft">

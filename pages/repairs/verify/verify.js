@@ -46,7 +46,7 @@ Page({
    * 点击导航栏
    */
   onNavBarTap: function (e) {
-    //清空list,重新获取数据
+    //清空list,重新获取数据（关键）
     this.setData({
       list:{},
     });
