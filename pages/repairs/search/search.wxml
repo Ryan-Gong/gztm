@@ -70,11 +70,11 @@
           </view>
         </block>
         <!--加载更多-->
-        <view class="weui-loadmore" hidden="{{list[curListId].endTipHidden}}">
+        <view class="weui-loadmore" hidden="{{list.endTipHidden}}">
             <view class="weui-loading"></view>
             <view class="weui-loadmore__tips">{{endTip}}</view>
         </view>
-        <view class="loading m-end" hidden="{{!list[curListId].endTipHidden}}">
+        <view class="loading m-end" hidden="{{!list.endTipHidden}}">
           --我也是有底线的--
         </view>
         <!---->

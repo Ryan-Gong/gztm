@@ -21,14 +21,13 @@ Page({
     inputShowed: false,
     inputVal: "",
 
-    windowWidth: 375,//屏幕可用宽度
-    windowHeight: '',//屏幕可用高度
+    windowWidth: 375, //屏幕可用宽度
+    windowHeight: '', //屏幕可用高度
 
-    endTipHidden: false,//是否隐藏加载提示
+    endTipHidden: false,  //是否隐藏加载提示
     endTip: '正在加载', //是否全部加载完毕
 
-    list: {},//把所有子项的数据都放在list里面
-    curListId: 0, //滑动到底部时，我们根据curListId知道当前需要请求那个对象
+    list: {}, //把所有子项的数据都放在list里面
   },
 
   /**
@@ -69,7 +68,11 @@ Page({
       scrollTop: 0
     });
     //查询数据
-    that.getList();
+    //模拟加载--期间为了显示正在加载中的效果-模拟网络延迟
+    setTimeout(() => {
+      //网络返回请求
+      that.getList();
+    }, 1500);//1.5秒的延时器
   },
 
   /**
@@ -143,7 +146,7 @@ Page({
             obj.endTip = '正在加载';
           }
           that.setData({
-            list:obj
+            list: obj
           });
           console.log(list);
         }).catch((err) => {
@@ -217,7 +220,11 @@ Page({
       });
     }).then((res) => {
       //console.log("第2步：登录用户成功后相关的事务");
-      
+      //模拟加载--期间为了显示正在加载中的效果-模拟网络延迟
+      setTimeout(() => {
+        //网络返回请求
+        that.getList();
+      }, 1500);//1.5秒的延时器
     }).catch((err) => {
       console.log(err);
     });
