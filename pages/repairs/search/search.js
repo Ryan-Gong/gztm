@@ -61,7 +61,7 @@ Page({
     var that = this;
     //清空list,重新获取数据（关键）
     this.setData({
-      list: {},
+      list: '',
     });
     // 滚动到顶部
     wx.pageScrollTo({
@@ -104,7 +104,6 @@ Page({
         method: 'GET',
         data: query,
       }).then((res) => {
-        //console.log(res);
         let obj = {};
         let result = res.result;
         let ds = res.result.result;
@@ -121,6 +120,7 @@ Page({
         that.setData({
           list: obj
         });
+        console.log(obj);
       }).catch((err) => {
         console.log(err);
       });
@@ -134,7 +134,6 @@ Page({
           method: 'GET',
           data: query,
         }).then((res) => {
-          console.log(res);
           let obj = {};
           let result = res.result;
           let ds = res.result.result;
@@ -151,12 +150,13 @@ Page({
           that.setData({
             list: obj
           });
+          console.log(obj);
         }).catch((err) => {
           console.log(err);
         });
       }
     }
-    console.log(list);
+    
     //---------
 
   },
