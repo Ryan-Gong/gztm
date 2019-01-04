@@ -85,6 +85,7 @@ Page({
     let query = {
       OTAId: that.data.userInfo.uname,
       Parameter: {
+        mode:'search',
         keys: that.data.inputVal, //关键词
         pageSize: that.data.query.pageSize,
         pageIndex: 1, //先读取第一页
@@ -120,12 +121,10 @@ Page({
         that.setData({
           list: obj
         });
-        console.log(list);
       }).catch((err) => {
         console.log(err);
       });
     } else {
-      console.log(list);
       //翻页
       query.Parameter.pageIndex = list.pageIndex + 1;
       if (list.pageIndex < list.pageCount) {
@@ -152,12 +151,12 @@ Page({
           that.setData({
             list: obj
           });
-          console.log(list);
         }).catch((err) => {
           console.log(err);
         });
       }
     }
+    console.log(list);
     //---------
 
   },
