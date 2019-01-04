@@ -58,6 +58,8 @@ Page({
   * 定时器setInterval
   */
   initData: function () {
+    that.getRepairs();//获取维护记录
+
     var that = this;
     var times = 0;//初始化/读取数据所消耗的时间
     var _repairs = that.data.repairs;
@@ -95,10 +97,8 @@ Page({
       });
     }).then((res) => {
       //console.log("第2步：读取登录用户的相关的事务");
-      //读取登录用户的相关的事务
-      that.getRepairs();
-      //权限设置(定时器扫描，等待异步请求处理结果)
-      that.setRight();
+      //初始化/读取数据(定时器扫描，等待异步请求处理结果)
+      that.initData();
     }).catch((err) => {
       console.log(err);
     });
