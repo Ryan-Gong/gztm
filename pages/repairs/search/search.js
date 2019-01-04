@@ -122,6 +122,7 @@ Page({
         console.log(err);
       });
     } else {
+      console.log(list);
       //翻页
       query.Parameter.pageIndex = list.pageIndex + 1;
       if (list.pageIndex < list.pageCount) {

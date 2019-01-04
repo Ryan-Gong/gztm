@@ -19,5 +19,15 @@ const U = {
     //   }
     // });
   },
+  /**
+   * 判断对象是否为空对象
+   * obj;var obj = {};
+   */
+  isEmptyObject: function (obj){
+    for (var key in obj) {
+      return false;
+    }
+    return true;
+  },
 };
 module.exports = U;
