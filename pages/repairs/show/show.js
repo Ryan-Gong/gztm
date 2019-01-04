@@ -54,10 +54,10 @@ Page({
   },
 
   /**
-  * 权限设置(用于等待异步请求处理结果)
+  * 初始化/读取数据(用于等待异步请求处理结果)
   * 定时器setInterval
   */
-  setRight: function () {
+  initData: function () {
     var that = this;
     var times = 0;//记录时间
     var _repairs = that.data.repairs;
