@@ -70,11 +70,14 @@
           </view>
         </block>
         <!--加载更多-->
-        <view class="weui-loadmore" hidden="{{isHideLoadMore}}">
+        <view class="weui-loadmore" hidden="{{list[curListId].endTipHidden}}">
             <view class="weui-loading"></view>
-            <view class="weui-loadmore__tips">正在加载</view>
+            <view class="weui-loadmore__tips">{{endTip}}</view>
         </view>
-        <view class="loading complete" hidden="{{!isComplete}}">--我也是有底线的--</view>
+        <view class="loading m-end" hidden="{{!list[curListId].endTipHidden}}">
+          --我也是有底线的--
+        </view>
+        <!---->
       </scroll-view>
     </view>
     <!--按钮栏-->

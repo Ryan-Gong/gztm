@@ -1,4 +1,9 @@
 // miniprogram/pages/repairs/search/search.js
+
+const app = getApp();
+var user = require("../../../utils/user.js");
+var http = require("../../../request/httpRequest.js");
+
 Page({
 
   /**
@@ -13,10 +18,15 @@ Page({
     },
     inputShowed: false,
     inputVal: "",
-    parts: [],  //放置返回数据的数组,设为空
+
+    windowWidth: 375,//屏幕可用宽度
     windowHeight: '',//屏幕可用高度
-    isHideLoadMore: true,//是否隐藏加载提示
-    isComplete: false,//是否全部加载完毕
+
+    endTipHidden: false,//是否隐藏加载提示
+    endTip: '正在加载', //是否全部加载完毕
+
+    list: {},//把所有子项的数据都放在list里面
+    curListId: 0, //滑动到底部时，我们根据curListId知道当前需要请求那个对象
   },
 
   /**
@@ -49,19 +59,24 @@ Page({
   search: function (e) {
     var that = this;
     //重置查询条件
-    let query = that.data.query;//保存在另一个变量中
-    query.keys = e.detail.value;
-    query.pageIndex = 1; //从第一页开始显示
-    that.setData({
-      inputVal: e.detail.value,
-      query: query,
-      isHideLoadMore: true,
-      isComplete: false,
-    });
-    that.req();
+    
     // 滚动到顶部
     wx.pageScrollTo({
       scrollTop: 0
+    });
+  },
+
+  //获取屏幕高度/宽度
+  getSystem: function () {
+    let that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        //console.log(res);
+        that.setData({
+          windowHeight: res.windowHeight,
+          windowWidth: res.windowWidth
+        })
+      },
     });
   },
 
