@@ -37,46 +37,46 @@
         </view>
         <!--有数据-循环-->
         <block wx:for='{{list.data}}' wx:for-index="index" wx:for-item="rep">
-              <view class="weui-form-preview">
-                <view class="weui-form-preview__hd">
-                  <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">维护类型</view>
-                    <view class="weui-form-preview__value_in-hd">{{rep.fl}}</view>
-                  </view>
-                </view>
-                <view class="weui-form-preview__bd">
-                  <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">标题</view>
-                    <view class="weui-form-preview__value">{{rep.bt}}</view>
-                  </view>
-                  <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">所属站点</view>
-                    <view class="weui-form-preview__value">{{rep.zdm}}</view>
-                  </view>
-                  <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">所属设备</view>
-                    <view class="weui-form-preview__value">{{rep.sbmc && rep.sbbh ? rep.sbmc+'/'+rep.sbbh: '无关联设备'}}</view>
-                  </view>
-                  <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">描述</view>
-                    <view class="weui-form-preview__value">{{rep.ms}}</view>
-                  </view>
-                  <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">提交时间</view>
-                    <view class="weui-form-preview__value">{{rep.tjsj}}</view>
-                  </view>
-                  <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">状态</view>
-                    <view class="weui-form-preview__value">{{rep.shzt}}/{{rep.whqd}}</view>
-                  </view>
-                </view>
-                <!--按钮whqd-->
-                <view class="weui-form-preview__ft">
-                  <navigator url="/pages/repairs/edit/edit?id={{rep.Id}}&m=edit" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">{{(rep.shzt=='待审核' && rep.whqd=='已确定') ? '点击审核' : '查看详情'}}</navigator>
-                </view>
-                <!---->
+          <view class="weui-form-preview">
+            <view class="weui-form-preview__hd">
+              <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label">维护类型</view>
+                <view class="weui-form-preview__value_in-hd">{{rep.fl}}</view>
               </view>
-            </block>
+            </view>
+            <view class="weui-form-preview__bd">
+              <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label">标题</view>
+                <view class="weui-form-preview__value">{{rep.bt}}</view>
+              </view>
+              <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label">所属站点</view>
+                <view class="weui-form-preview__value">{{rep.zdm}}</view>
+              </view>
+              <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label">所属设备</view>
+                <view class="weui-form-preview__value">{{rep.sbmc && rep.sbbh ? rep.sbmc+'/'+rep.sbbh: '无关联设备'}}</view>
+              </view>
+              <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label">描述</view>
+                <view class="weui-form-preview__value">{{rep.ms}}</view>
+              </view>
+              <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label">提交时间</view>
+                <view class="weui-form-preview__value">{{rep.tjsj}}</view>
+              </view>
+              <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label">状态</view>
+                <view class="weui-form-preview__value">{{rep.shzt}}/{{rep.whqd}}</view>
+              </view>
+            </view>
+            <!--按钮whqd-->
+            <view class="weui-form-preview__ft">
+              <navigator url="/pages/repairs/edit/edit?id={{rep.Id}}&m=edit" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">{{(rep.shzt=='待审核' && rep.whqd=='已确定') ? '点击审核' : '查看详情'}}</navigator>
+            </view>
+            <!---->
+          </view>
+        </block>
         <!--加载更多-->
         <view class="weui-loadmore" hidden="{{list.endTipHidden}}">
             <view class="weui-loading"></view>
