@@ -493,12 +493,17 @@ Page({
         let uname = _userInfo.uname;
         let _action = that.data.action; //edit编辑/confirm确认/verify审核
         //如果当前登录用户==记录人员(jlry) 则，修改
-        if (uname == _repairs.jlry && _action == 'edit') _action = 'edit';
-        //如果当前登录用户==维护人员（whry） 则，确认
-        if (uname == _repairs.whry && _action == 'confirm') _action = 'confirm';
-        if (right == '编辑' && _repairs.whqd == '已确定' && _action == 'verify') {
+        if (uname == _repairs.jlry && _action == 'edit'){
+          _action = 'edit'
+        } else if (uname == _repairs.whry && _action == 'confirm') {
+          //如果当前登录用户==维护人员（whry） 则，确认
+          _action = 'confirm';
+        }else if (right == '编辑' && _repairs.whqd == '已确定' && _action == 'verify') {
           _action = 'verify';
+        }else{
+          _action = 'view';
         }
+        console.log(_action);
         that.setData({
           action: _action,
           loading: false
