@@ -29,7 +29,7 @@ Page({
     },
     searchSiteResult: {}, //搜索站点信息
     selectedSite: { id: '', name: '' },//已选择的站点信息
-    action:'查看',//操作动作【查看、确认、审核、修改】
+    action: 'edit',//操作动作【edit编辑、confirm确认、verify审核】
     //审核
     review: ["通过", "不通过"],
     reviewIndex:0,
@@ -489,7 +489,7 @@ Page({
         let uname = _userInfo.uname;
         let _action = that.data.action;
         //如果当前登录用户==记录人员(jlry) 则，修改
-        if (uname == _repairs.jlry) _action = '修改';
+        if (uname == _repairs.jlry ) _action = '修改';
         //如果当前登录用户==维护人员（whry） 则，确认
         if (uname == _repairs.whry) _action = '确认';
         if (right == '编辑' && _repairs.whqd == '已确定') {
