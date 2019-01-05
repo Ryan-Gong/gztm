@@ -4,7 +4,7 @@
   <view class="shade" wx:if="{{loading}}"></view>
   <view class="weui-loading fixed-center" wx:if="{{loading}}"></view>
   <view class="page__hd"></view>
-  <view class="page__bd" style='margin-bottom:100rpx '>
+  <view class="page__bd" style='margin-bottom:40rpx '>
     <form bindsubmit="formSubmit">
       <!--错误提示-->
       <view class="weui-toptips weui-toptips_warn" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
@@ -12,11 +12,7 @@
       <view class="weui-cells__title">分类</view>
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_select">
-            <view class="weui-cell__bd">
-                <picker disabled='{{!editRight}}' name='fl' bindchange="bindAccountChange" value="{{cateIndex}}" range="{{cate}}">
-                    <view class="weui-select">{{cateValue}}</view>
-                </picker>
-            </view>
+            <view class="weui-cell__bd">{{repairs.fl}}</view>
         </view>
       </view>
       <!--标题-->
@@ -24,7 +20,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
           <view class="weui-cell__bd">
-            <input name='bt' disabled='{{!editRight}}' class="weui-input" placeholder="请输入标题" value='{{repairs.bt}}' />
+            {{repairs.bt}}
           </view>
         </view>
       </view>
@@ -33,7 +29,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
           <view class="weui-cell__bd">
-            <input name='zddz' disabled='{{!editRight}}' class="weui-input" placeholder="所属站点" value='{{repairs.zdm}}' />
+          {{repairs.zdm}}
           </view>
         </view>
       </view>
@@ -42,9 +38,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_select">
             <view class="weui-cell__bd">
-                <picker disabled='{{!editRight}}' name='sb' bindchange="" value="{{sbIndex}}" range="{{sblist}}">
-                    <view class="weui-select">{{repairs.sbmc}}</view>
-                </picker>
+              {{repairs.sbmc?repairs.sbmc:'无关联设备'}}
             </view>
         </view>
       </view>
@@ -53,9 +47,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_select">
             <view class="weui-cell__bd">
-                <picker disabled='{{!editRight}}' name='sbbh' bindchange="" value="{{sbbhIndex}}" range="{{sbbhList}}">
-                    <view class="weui-select">{{repairs.sbbh}}</view>
-                </picker>
+              {{repairs.sbbh?repairs.sbbh:'无关联设备'}}
             </view>
         </view>
       </view>
