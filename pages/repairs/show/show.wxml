@@ -76,11 +76,11 @@
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell">
               <view class="weui-cell__bd">是否确认</view>
-              <view class="weui-cell__ft">{{repairs.sbmc?repairs.sbmc:'无关联设备'}}</view>
+              <view class="weui-cell__ft">{{repairs.whqd}}</view>
           </view>
           <view class="weui-cell">
             <view class="weui-cell__bd">确认人员</view>
-            <view class="weui-cell__ft">{{repairs.sbbh?repairs.sbbh:'无关联设备'}}</view>
+            <view class="weui-cell__ft">{{repairs.whry}}</view>
           </view>
       </view>
       <!--审核人员-->
@@ -88,19 +88,19 @@
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell">
               <view class="weui-cell__bd">是否审核</view>
-              <view class="weui-cell__ft">{{repairs.sbmc?repairs.sbmc:'无关联设备'}}</view>
+              <view class="weui-cell__ft">{{repairs.shzt}}</view>
           </view>
           <view class="weui-cell">
             <view class="weui-cell__bd">审核人员</view>
-            <view class="weui-cell__ft">{{repairs.sbbh?repairs.sbbh:'无关联设备'}}</view>
+            <view class="weui-cell__ft">{{repairs.shry}}</view>
           </view>
           <view class="weui-cell">
             <view class="weui-cell__bd">审核时间</view>
-            <view class="weui-cell__ft">{{repairs.sbbh?repairs.sbbh:'无关联设备'}}</view>
+            <view class="weui-cell__ft">{{repairs.shsj}}</view>
           </view>
           <view class="weui-cell">
             <view class="weui-cell__bd">审核备注</view>
-            <view class="weui-cell__ft">{{repairs.sbbh?repairs.sbbh:'无关联设备'}}</view>
+            <view class="weui-cell__ft">{{repairs.shbz}}</view>
           </view>
       </view>
       <!--other-->
