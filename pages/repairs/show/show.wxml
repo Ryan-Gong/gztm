@@ -31,21 +31,15 @@
       </view>
       <!--关联设备-->
       <view class="weui-cells__title">关联设备</view>
-      <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell weui-cell_select">
-            <view class="weui-cell__bd">
-              {{repairs.sbmc?repairs.sbmc:'无关联设备'}}
-            </view>
-        </view>
-      </view>
-      <!--设备编号-->
-      <view class="weui-cells__title">设备编号</view>
-      <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell weui-cell_select">
-            <view class="weui-cell__bd">
-              {{repairs.sbbh?repairs.sbbh:'无关联设备'}}
-            </view>
-        </view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell">
+              <view class="weui-cell__bd">设备名称</view>
+              <view class="weui-cell__ft">{{repairs.sbmc?repairs.sbmc:'无关联设备'}}</view>
+          </view>
+          <view class="weui-cell">
+            <view class="weui-cell__bd">设备编号</view>
+            <view class="weui-cell__ft">{{repairs.sbbh?repairs.sbbh:'无关联设备'}}</view>
+          </view>
       </view>
       <!--描述-->
       <view class="weui-cells__title">描述</view>
