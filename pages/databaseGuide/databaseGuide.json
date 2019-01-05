@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "磨面站点管理",
-  "usingComponents": {
-    "vas-toast": "../../components/toast/toast"
-  }
-}
