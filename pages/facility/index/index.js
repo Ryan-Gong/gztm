@@ -136,6 +136,34 @@ Page({
     }
     lastScollTop = scrollTop
   },
+
+  /**
+    * 加载/初始化/读取数据(用于等待异步请求处理结果)
+    * 定时器setInterval
+    */
+  loadData: function () {
+    var that = this;
+    that.req();
+    var times = 0;//初始化/读取数据所消耗的时间
+    var _facility = that.data.facility;
+    var _userInfo = that.data.userInfo;
+    var i = setInterval(function () {
+      times++;
+      //如果data中repairs日志和userInfo登录用户有数据
+      if (_facility.length>0 && _userInfo) {
+        console.log(times);
+        that.setData({
+          isHideLoadMore: false, //显示加载条
+        });
+        clearInterval(i);//如果有数据，则 清除定时器
+      } else {
+        //否则，继续 从 data 中 读取 repairs的值
+        _facility = that.data.facility;
+        _userInfo = that.data.userInfo;
+      }
+    }, 1000);//每隔1秒时间便执行
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -168,7 +196,7 @@ Page({
     }).then((res) => {
       //console.log("第2步：读取登录用户的相关的事务");
       //权限设置(定时器扫描，等待异步请求处理结果)
-      that.req();
+      that.loadData();
     }).catch((err) => {
       console.log(err);
     });
