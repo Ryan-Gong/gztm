@@ -517,7 +517,7 @@ Page({
     var that = this;
     let id = options.id;
     let mode = options.m ? options.m : 'edit'; //edit编辑/confirm确认/verify审核
-
+    console.log(mode);
     this.setData({
       id: id,
       action: mode,
@@ -525,14 +525,12 @@ Page({
     });
     //检查用户是否登录
     user.chklogin().then((res) => {
-      //如果已经登录，从缓存中把登录信息赋值给userInfo
-      console.log("第1步：读取登录信息");
+      //console.log("第1步：如果已经登录，从缓存中把登录信息赋值给userInfo");
       that.setData({
         userInfo: res.data
       });
     }).then((res) => {
-      console.log("第2步：读取登录用户的相关的事务");
-      //读取登录用户的相关的事务
+      //console.log("第2步：读取登录用户的相关的事务");
       that.getUsers();
       that.getRepairs();
       //权限设置(定时器扫描，等待异步请求处理结果)
