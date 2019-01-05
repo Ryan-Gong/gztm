@@ -1,5 +1,6 @@
 // miniprogram/pages/parts/index/index.js
 const app = getApp();
+var user = require("../../../utils/user.js");
 Page({
 
   /**
@@ -18,6 +19,7 @@ Page({
     windowHeight: '',//屏幕可用高度
     isHideLoadMore: true,//是否隐藏加载提示
     isComplete: false,//是否全部加载完毕
+    userInfo:''
   },
   /**
    * 搜索框 功能
@@ -148,7 +150,6 @@ Page({
     that.setData({
       query: query
     });
-    that.req();
     //获取屏幕高度
     wx.getSystemInfo({
       success: function (res) {
@@ -158,6 +159,20 @@ Page({
         console.log("onLoad屏幕高度: " + res.windowHeight)
       }
     });
+    //检查用户是否登录
+    user.chklogin().then((res) => {
+      //console.log("第1步：如果已经登录，从缓存中把登录信息赋值给userInfo");
+      that.setData({
+        userInfo: res.data
+      });
+    }).then((res) => {
+      //console.log("第2步：读取登录用户的相关的事务");
+      //权限设置(定时器扫描，等待异步请求处理结果)
+      that.req();
+    }).catch((err) => {
+      console.log(err);
+    });
+    return;
   },
 
   /**
