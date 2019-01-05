@@ -514,6 +514,7 @@ Page({
   onLoad: function (options) {
     var that = this;
     let id = options.id;
+    let mode = options.m ? options.m : 'edit'; //edit编辑/confirm确认/verify审核
     
     this.setData({
       id: id,
