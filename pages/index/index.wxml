@@ -51,10 +51,10 @@
   </view>
 
   <!-- 消息栏 -->
-  <view class="uploader">
+  <!-- <view class="uploader">
     <navigator url="../sites/map/map" open-type="navigate" class="uploader-text">
       <text>我的消息</text>
     </navigator>
-  </view>
+  </view> -->
 
 </view>
