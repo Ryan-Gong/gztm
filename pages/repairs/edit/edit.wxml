@@ -3,7 +3,10 @@
   <!--屏幕背景变暗的背景 -->
   <view class="shade" wx:if="{{loading}}"></view>
   <view class="weui-loading fixed-center" wx:if="{{loading}}"></view>
-  <view class="page__hd"></view>
+  <view class="page__hd">
+    <view class="page__title">{{site.zdm}}</view>
+    <view class="page__desc">维护记录</view>
+  </view>
   <view class="page__bd">
     <form bindsubmit="formSubmit">
       <input name='action' value='{{action}}' hidden />
