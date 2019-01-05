@@ -445,7 +445,7 @@ Page({
     data.whry = that.data.users[data.whry];
     //删除json对象的不相干的属性
     delete data.zdname; //删除data json对象的zdname属性
-    console.log("重组后的数据：" + JSON.stringify(data)); return;
+    //console.log("重组后的数据：" + JSON.stringify(data)); return;
     //验证通过后，保存数据
     http.request({
       url: app.globalData.ApiUrl + '/repairs/' + that.data.id,
