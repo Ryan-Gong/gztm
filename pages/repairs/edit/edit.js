@@ -518,7 +518,7 @@ Page({
     
     this.setData({
       id: id,
-      editRight: (options.m && options.m == 'view') ? false : true
+      editRight: (mode == 'verify') ? false : true
     });
     //检查用户是否登录
     user.chklogin().then((res) => {
