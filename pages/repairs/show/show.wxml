@@ -11,27 +11,23 @@
       <!--类别-->
       <view class="weui-cells__title">分类</view>
       <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell weui-cell_select">
-            <view class="weui-cell__bd">{{repairs.fl}}</view>
-        </view>
+          <view class="weui-cell">
+              <view class="weui-cell__bd">{{repairs.fl}}</view>
+          </view>
       </view>
       <!--标题-->
       <view class="weui-cells__title">标题</view>
       <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell weui-cell_input">
-          <view class="weui-cell__bd">
-            {{repairs.bt}}
+          <view class="weui-cell">
+              <view class="weui-cell__bd">{{repairs.bt}}</view>
           </view>
-        </view>
       </view>
       <!--所属站点-->
       <view class="weui-cells__title">所属站点</view>
       <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell weui-cell_input">
-          <view class="weui-cell__bd">
-          {{repairs.zdm}}
+          <view class="weui-cell">
+              <view class="weui-cell__bd">{{repairs.zdm}}</view>
           </view>
-        </view>
       </view>
       <!--关联设备-->
       <view class="weui-cells__title">关联设备</view>
@@ -56,7 +52,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell">
           <view class="weui-cell__bd">
-            <textarea disabled='{{!editRight}}' name='bz' class="weui-textarea" placeholder="" value='{{repairs.ms}}' style="height: 3.3em" />
+            {{repairs.ms}}
           </view>
         </view>
       </view>
@@ -65,7 +61,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell">
           <view class="weui-cell__bd">
-            <textarea disabled='{{!editRight}}' name='bz' class="weui-textarea" placeholder="" value='{{repairs.zj}}' style="height: 3.3em" />
+            {{repairs.zj}}
           </view>
         </view>
       </view>
@@ -74,9 +70,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
           <view class="weui-cell__bd">
-            <picker disabled='{{!editRight}}' name='jzsj' mode="date" value="{{buildDate}}" start="2017-09-01" end="2020-09-01" bindchange="bindDateChange">
-                <view class="weui-input">{{buildDate}}</view>
-            </picker>
+            {{repairs.whsj}}
           </view>
         </view>
       </view>
@@ -85,7 +79,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
           <view class="weui-cell__bd">
-            <input name='tjsj' disabled='{{!editRight}}' class="weui-input" placeholder="系统自动生成" value='{{repairs.tjsj}}' />
+            {{repairs.tjsj}}
           </view>
         </view>
       </view>
