@@ -407,10 +407,13 @@ Page({
           id: res.result.zdid,
           name: res.result.zdm
         },
-        cateIndex: utils.getKey(res.result.fl, that.data.cate),
+        cateIndex: utils.getKey(res.result.fl, that.data.cate) 
+          ? utils.getKey(res.result.fl, that.data.cate):0,
         cateValue: res.result.fl,
-        usersIndex: utils.getKey(res.result.jlry, that.data.users),
-        reviewIndex: utils.getKey(res.result.shzt, that.data.review),
+        usersIndex: utils.getKey(res.result.jlry, that.data.users)
+          ? utils.getKey(res.result.jlry, that.data.users):0,
+        reviewIndex: utils.getKey(res.result.shzt, that.data.review)
+          ? utils.getKey(res.result.shzt, that.data.review):0,
       });
       that.getFacilityBySite(res.result.sbmc, res.result.sbbh);
     }).catch((err) => {
