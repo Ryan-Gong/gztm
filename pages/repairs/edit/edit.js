@@ -482,9 +482,11 @@ Page({
     var times = 0;//记录时间
     var _repairs = that.data.repairs;
     var _userInfo = that.data.userInfo;
+    var _usersIndex = that.data.usersIndex;
+
     var i = setInterval(function () {
       times++;
-      if (_repairs && _userInfo) {
+      if (_repairs && _userInfo && _usersIndex) {
         console.log(times);
         //如果记录人员(jlry) 或 维护人员（whry）是当前登录用户
         let right = _userInfo.right.gzwhqx;
@@ -506,6 +508,7 @@ Page({
         //继续 从 data 中 读取 repairs的值
         _repairs = that.data.repairs;
         _userInfo = that.data.userInfo;
+        _usersIndex = that.data.usersIndex;
       }
     }, 1000);//每隔1秒时间便执行
   },
@@ -517,7 +520,6 @@ Page({
     var that = this;
     let id = options.id;
     let mode = options.m ? options.m : 'edit'; //edit编辑/confirm确认/verify审核
-    console.log(mode);
     this.setData({
       id: id,
       action: mode,
