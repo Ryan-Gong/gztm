@@ -11,7 +11,6 @@ Page({
    */
   data: {
     id: '',
-    popErrorMsg: '',
     loading: true,
     userInfo: '',//用户登录信息
     repairs: '', //维护记录

@@ -6,8 +6,6 @@
   <view class="page__hd"></view>
   <view class="page__bd" style='margin-bottom:40rpx '>
     <form bindsubmit="formSubmit">
-      <!--错误提示-->
-      <view class="weui-toptips weui-toptips_warn" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
       <!--类别-->
       <view class="weui-cells__title">分类</view>
       <view class="weui-cells weui-cells_after-title">
@@ -62,47 +60,48 @@
       <!--维护时间-->
       <view class="weui-cells__title">维护时间</view>
       <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell weui-cell_input">
-          <view class="weui-cell__bd">
-            {{repairs.whsj}}
+          <view class="weui-cell">
+              <view class="weui-cell__bd">{{repairs.whsj}}</view>
           </view>
-        </view>
       </view>
       <!--提交时间-->
       <view class="weui-cells__title">提交时间</view>
       <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell weui-cell_input">
-          <view class="weui-cell__bd">
-            {{repairs.tjsj}}
+          <view class="weui-cell">
+              <view class="weui-cell__bd">{{repairs.tjsj}}</view>
           </view>
-        </view>
+      </view>
+      <!--确认信息-->
+      <view class="weui-cells__title">确认信息</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell">
+              <view class="weui-cell__bd">是否确认</view>
+              <view class="weui-cell__ft">{{repairs.sbmc?repairs.sbmc:'无关联设备'}}</view>
+          </view>
+          <view class="weui-cell">
+            <view class="weui-cell__bd">确认人员</view>
+            <view class="weui-cell__ft">{{repairs.sbbh?repairs.sbbh:'无关联设备'}}</view>
+          </view>
       </view>
       <!--审核人员-->
-      <view class="weui-cells__title">审核人员</view>
-      <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell weui-cell_input">
-          <view class="weui-cell__bd">
-            <input name='shry' disabled='{{!editRight}}' class="weui-input" placeholder="" value='{{repairs.shry}}' />
+      <view class="weui-cells__title">审核信息</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell">
+              <view class="weui-cell__bd">是否审核</view>
+              <view class="weui-cell__ft">{{repairs.sbmc?repairs.sbmc:'无关联设备'}}</view>
           </view>
-        </view>
-      </view>
-      <!--审核时间-->
-      <view class="weui-cells__title">审核时间</view>
-      <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell weui-cell_input">
-          <view class="weui-cell__bd">
-            <input name='shsj' disabled='{{!editRight}}' class="weui-input" placeholder="" value='{{repairs.shsj}}' />
+          <view class="weui-cell">
+            <view class="weui-cell__bd">审核人员</view>
+            <view class="weui-cell__ft">{{repairs.sbbh?repairs.sbbh:'无关联设备'}}</view>
           </view>
-        </view>
-      </view>
-      <!--审核备注-->
-      <view class="weui-cells__title">审核备注</view>
-      <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell">
-          <view class="weui-cell__bd">
-            <textarea disabled='{{!editRight}}' name='shbz' class="weui-textarea" placeholder="此处显示审核备注" value='{{repairs.shbz}}' style="height: 3.3em" />
+          <view class="weui-cell">
+            <view class="weui-cell__bd">审核时间</view>
+            <view class="weui-cell__ft">{{repairs.sbbh?repairs.sbbh:'无关联设备'}}</view>
           </view>
-        </view>
+          <view class="weui-cell">
+            <view class="weui-cell__bd">审核备注</view>
+            <view class="weui-cell__ft">{{repairs.sbbh?repairs.sbbh:'无关联设备'}}</view>
+          </view>
       </view>
       <!--other-->
     </form>
