@@ -11,7 +11,7 @@
         <view class="weui-cell weui-cell_input">
           <view class="weui-cell__bd">
             <input name='zdid' value='{{selectedSite.id}}' hidden />
-            <input name='zdname' class="weui-input" placeholder="选择站点" value='{{selectedSite.name}}' bindtap='showModal' />
+            <input name='zdname' disabled class="weui-input" placeholder="选择站点" value='{{selectedSite.name}}' bindtap='showModal' />
           </view>
           <!--报错tips-->
           <!--<view class="weui-cell__ft" wx:if="{{hasError}}">
