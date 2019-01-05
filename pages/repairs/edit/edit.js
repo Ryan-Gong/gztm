@@ -81,6 +81,8 @@ Page({
   },
   //显示对话框
   showModal: function () {
+    let that = this;
+    if (!that.data.editRight) return false;
     // 显示遮罩层
     var animation = wx.createAnimation({
       duration: 200,
