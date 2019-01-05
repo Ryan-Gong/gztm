@@ -12,7 +12,7 @@ Page({
   data: {
     id: '',
     hasError: false,
-    loading:true,
+    loading: true,
     popErrorMsg: '',
     userInfo: '',//用户登录信息
     repairs: '', //维护记录
@@ -32,7 +32,7 @@ Page({
     action: 'edit',//操作动作【edit编辑、confirm确认、verify审核】
     //审核
     review: ["通过", "不通过"],
-    reviewIndex:0,
+    reviewIndex: 0,
     //维护人员资料
     users: ['请选择'],
     usersIndex: 0,
@@ -74,7 +74,7 @@ Page({
     })
   },
   //选择审核状态
-  bindReviewChange:function(e){
+  bindReviewChange: function (e) {
     this.setData({
       reviewIndex: e.detail.value
     })
@@ -279,7 +279,7 @@ Page({
         that.setData({
           facility: sb,//facility.concat(sb),
           pkgRelation: json,
-          facilityIndex: sbmc ? utils.getKey(sbmc,sb):0,
+          facilityIndex: sbmc ? utils.getKey(sbmc, sb) : 0,
           facilityValue: sbmc,
         });
         that.getFacilityXHList(sbbh);//读取对应一系列的编号列表
@@ -293,7 +293,7 @@ Page({
    * 由设备名称读取对应一系列的编号列表
    * selected 已经选择的值【设备编号】，用于修改
    */
-  getFacilityXHList: function (selected='') {
+  getFacilityXHList: function (selected = '') {
     var that = this;
     //js获取对象长度
     let arr = Object.keys(that.data.pkgRelation);
@@ -435,7 +435,7 @@ Page({
     if (data.sbmc == '无关联设备') data.sbmc = '';
     data.sbbh = that.data.facilityXH[data.sbbh];
     if (data.sbbh == '无关联设备') data.sbbh = '';
-    data.fl = that.data.cate[data.fl]; 
+    data.fl = that.data.cate[data.fl];
     if (data.shzt) data.shzt = that.data.review[data.shzt];
     data.whry = that.data.users[data.whry];
     //删除json对象的不相干的属性
@@ -475,7 +475,7 @@ Page({
   * 权限设置(用于等待异步请求处理结果)
   * 定时器setInterval
   */
-  setRight:function(){
+  setRight: function () {
     var that = this;
     var times = 0;//记录时间
     var _repairs = that.data.repairs;
@@ -487,17 +487,17 @@ Page({
         //如果记录人员(jlry) 或 维护人员（whry）是当前登录用户
         let right = _userInfo.right.gzwhqx;
         let uname = _userInfo.uname;
-        let _action = that.data.action;
+        let _action = that.data.action; //edit编辑/confirm确认/verify审核
         //如果当前登录用户==记录人员(jlry) 则，修改
-        if (uname == _repairs.jlry ) _action = '修改';
+        if (uname == _repairs.jlry && _action == 'edit') _action = 'edit';
         //如果当前登录用户==维护人员（whry） 则，确认
-        if (uname == _repairs.whry) _action = '确认';
-        if (right == '编辑' && _repairs.whqd == '已确定') {
-          _action = '审核';
+        if (uname == _repairs.whry && _action == 'confirm') _action = 'confirm';
+        if (right == '编辑' && _repairs.whqd == '已确定' && _action == 'verify') {
+          _action = 'verify';
         }
         that.setData({
           action: _action,
-          loading:false
+          loading: false
         });
         clearInterval(i);//如果有数据，则 清除定时器
       } else {
@@ -515,9 +515,10 @@ Page({
     var that = this;
     let id = options.id;
     let mode = options.m ? options.m : 'edit'; //edit编辑/confirm确认/verify审核
-    
+
     this.setData({
       id: id,
+      action: mode,
       editRight: (mode == 'verify') ? false : true
     });
     //检查用户是否登录
