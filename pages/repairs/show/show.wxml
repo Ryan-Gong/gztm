@@ -4,7 +4,7 @@
   <view class="shade" wx:if="{{loading}}"></view>
   <view class="weui-loading fixed-center" wx:if="{{loading}}"></view>
   <view class="page__hd"></view>
-  <view class="page__bd">
+  <view class="page__bd" style='margin-bottom:100rpx '>
     <form bindsubmit="formSubmit">
       <!--错误提示-->
       <view class="weui-toptips weui-toptips_warn" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
