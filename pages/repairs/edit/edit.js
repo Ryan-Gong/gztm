@@ -410,8 +410,8 @@ Page({
         cateIndex: utils.getKey(res.result.fl, that.data.cate) 
           ? utils.getKey(res.result.fl, that.data.cate):0,
         cateValue: res.result.fl,
-        usersIndex: utils.getKey(res.result.jlry, that.data.users)
-          ? utils.getKey(res.result.jlry, that.data.users):0,
+        usersIndex: utils.getKey(res.result.whry, that.data.users)
+          ? utils.getKey(res.result.whry, that.data.users):0,
         reviewIndex: utils.getKey(res.result.shzt, that.data.review)
           ? utils.getKey(res.result.shzt, that.data.review):0,
       });
@@ -489,7 +489,7 @@ Page({
 
     var i = setInterval(function () {
       times++;
-      if (_repairs && _userInfo && _usersIndex) {
+      if (_repairs && _userInfo) {
         console.log(times);
         //如果记录人员(jlry) 或 维护人员（whry）是当前登录用户
         let right = _userInfo.right.gzwhqx;

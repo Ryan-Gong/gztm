@@ -87,7 +87,7 @@
       <!---->
       <view class="weui-cells__title">与{{site.zdm}}相关的</view>
       <view class="weui-cells weui-cells_after-title">
-        <navigator url="../facility/facility?id={{id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <navigator url="../facility/facility?id={{id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:if='{{userInfo.right.sbxxqx}}'>
           <view class="weui-cell__bd">
             <view style="display: inline-block; vertical-align: middle">设备信息</view>
             <view class="weui-badge" style="margin-left: 5px;">{{facility.length}}</view>

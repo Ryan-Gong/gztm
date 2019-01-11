@@ -147,6 +147,7 @@ Page({
       that.setData({
         userInfo: res.data
       });
+      console.log(res.data);
       if (res.data.right.zdxxqx != '编辑') {
         wx.showToast({
           title: '暂无权限',
