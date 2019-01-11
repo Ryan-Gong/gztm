@@ -1,6 +1,7 @@
 // miniprogram/pages/facility/index/index.js
 const app = getApp();
 var user = require("../../../utils/user.js");
+var http = require("../../../request/httpRequest.js");
 Page({
 
   /**
@@ -193,6 +194,19 @@ Page({
       that.setData({
         userInfo: res.data
       });
+      //权限验证
+      if (res.data.right.sbxxqx != '编辑') {
+        wx.showToast({
+          title: '暂无权限',
+          icon: 'loading',
+          duration: 6000,
+        });
+        setTimeout(() => {
+          wx.navigateBack({
+            delta: 1
+          });
+        }, 1500);
+      }
     }).then((res) => {
       //console.log("第2步：读取登录用户的相关的事务");
       //权限设置(定时器扫描，等待异步请求处理结果)

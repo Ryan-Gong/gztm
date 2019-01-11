@@ -1,5 +1,7 @@
 // miniprogram/pages/facility/show/show.js
 const app = getApp();
+var user = require("../../../utils/user.js");
+var http = require("../../../request/httpRequest.js");
 Page({
 
   /**
@@ -8,6 +10,7 @@ Page({
   data: {
     id: '',
     popErrorMsg: '',
+    userInfo: '',//用户登录信息
     query: {},//请求参数 query
     info: {}, //设备信息
     infoState: ["正常", "未安装", "故障", "维护中"],//数组
@@ -129,7 +132,32 @@ Page({
     that.setData({
       id: options.id
     });
-    that.req();
+    //检查用户是否登录
+    user.chklogin().then((res) => {
+      //console.log("第1步：如果已经登录，从缓存中把登录信息赋值给userInfo");
+      that.setData({
+        userInfo: res.data
+      });
+      //权限验证
+      if (res.data.right.sbxxqx != '编辑') {
+        wx.showToast({
+          title: '暂无权限',
+          icon: 'loading',
+          duration: 6000,
+        });
+        setTimeout(() => {
+          wx.navigateBack({
+            delta: 1
+          });
+        }, 1500);
+      }
+    }).then((res) => {
+      //console.log("第2步：读取登录用户的相关的事务");
+      that.req();
+    }).catch((err) => {
+      console.log(err);
+    });
+    return;
   },
 
   /**

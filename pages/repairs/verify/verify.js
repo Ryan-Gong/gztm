@@ -261,6 +261,7 @@ Page({
       that.setData({
         userInfo: res.data
       });
+      //权限验证
       if (res.data.right.gzwhqx!='编辑') {
         wx.showToast({
           title: '暂无权限',
