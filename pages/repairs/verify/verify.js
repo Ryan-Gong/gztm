@@ -261,6 +261,19 @@ Page({
       that.setData({
         userInfo: res.data
       });
+      if (res.data.right.gzwhqx!='编辑') {
+        wx.showToast({
+          title: '暂无权限',
+          icon: 'loading',
+          duration: 6000,
+        });
+        setTimeout(() => {
+          wx.navigateBack({
+            delta: 1
+          });
+        }, 1500);
+      }
+      console.log(res.data);
     }).then((res) => {
       //console.log("第2步：登录用户成功后相关的事务");
       that.getNav(index);
