@@ -1,6 +1,7 @@
 // miniprogram/pages/parts/index/index.js
 const app = getApp();
 var user = require("../../../utils/user.js");
+var http = require("../../../request/httpRequest.js");
 Page({
 
   /**
@@ -19,7 +20,7 @@ Page({
     windowHeight: '',//屏幕可用高度
     isHideLoadMore: true,//是否隐藏加载提示
     isComplete: false,//是否全部加载完毕
-    userInfo:''
+    userInfo: '' //用户登录信息
   },
   /**
    * 搜索框 功能
@@ -165,6 +166,19 @@ Page({
       that.setData({
         userInfo: res.data
       });
+      //权限验证
+      if (res.data.right.lbjxxqx != '编辑') {
+        wx.showToast({
+          title: '暂无权限',
+          icon: 'loading',
+          duration: 6000,
+        });
+        setTimeout(() => {
+          wx.navigateBack({
+            delta: 1
+          });
+        }, 1500);
+      }
     }).then((res) => {
       //console.log("第2步：读取登录用户的相关的事务");
       //权限设置(定时器扫描，等待异步请求处理结果)
