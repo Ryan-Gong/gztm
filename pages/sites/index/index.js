@@ -39,6 +39,15 @@ Page({
       inputVal: e.detail.value
     });
   },
+  //点击小键盘上的[搜索按钮或enter]就触发要执行的方法
+  search: function (e) {
+    var that = this;
+    let keys = e.detail.value;
+    wx.redirectTo({
+      url: '../search/index?keys=' + keys,
+    });
+    return;
+  },
   //与后台连接得到数据
   req: function () {
     var that = this;

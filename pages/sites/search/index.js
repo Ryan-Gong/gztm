@@ -76,7 +76,10 @@ Page({
   //搜索
   search: function (e) {
     var that = this;
-    console.log(e);
+    // 滚动到顶部
+    wx.pageScrollTo({
+      scrollTop: 0
+    });
     //that.req(this.data.keys);
     that.wait();
   },
@@ -86,7 +89,8 @@ Page({
   onLoad: function (options) {
     var that = this;
     that.setData({
-      type: options.type
+      type: options.type,
+      keys: options.keys
     });
     that.wait();
   },
