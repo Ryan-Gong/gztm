@@ -81,12 +81,11 @@
       </view>
       <!--所属站点-->
       <view class="weui-cells__title" wx:if="{{id}}">所属站点</view>
-      <view class="weui-cells weui-cells_after-title" wx:if="{{id}}">
-        <view class="weui-cell weui-cell_input">
-          <view class="weui-cell__bd">
-            <input name='zdid' disabled='{{!editRight}}' class="weui-input" placeholder="" value='{{info.zdm}}' />
-          </view>
-        </view>
+      <view class="weui-cells weui-cells_after-title">
+          <navigator url="/pages/sites/show/show?id={{info.zdid}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+              <view class="weui-cell__bd">{{info.zdm}}</view>
+              <view class="weui-cell__ft weui-cell__ft_in-access">查看详情</view>
+          </navigator>
       </view>
       <!--other-->
       <!---->

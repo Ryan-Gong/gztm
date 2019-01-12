@@ -59,7 +59,11 @@
                 </view>
                 <view class="weui-form-preview__item">
                     <view class="weui-form-preview__label">所属站点</view>
-                    <view class="weui-form-preview__value">{{item.zdid}}/{{item.zdm}}</view>
+                    <view class="weui-form-preview__value">
+                      <navigator url="/pages/sites/show/show?id={{item.zdid}}" open-type="navigate">
+                        {{item.zdid}}/{{item.zdm}}
+                      </navigator>
+                    </view>
                 </view>
                 <view class="weui-form-preview__item">
                     <view class="weui-form-preview__label">设备状况</view>
