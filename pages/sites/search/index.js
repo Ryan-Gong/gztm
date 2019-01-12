@@ -89,8 +89,8 @@ Page({
   onLoad: function (options) {
     var that = this;
     that.setData({
-      type: options.type,
-      keys: options.keys
+      type: options.type || '',
+      keys: options.keys || ''
     });
     that.wait();
   },
