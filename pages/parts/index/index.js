@@ -83,7 +83,8 @@ Page({
       success(res) {
         //console.log(res); return;
         let result = res.data.result;
-        let list = result.result || [];
+        //let list = result.result || [];
+        let list = result.result[0] || []; // 此处 存储过程 只有一个结果集
         // 如果是第一页
         // 将请求下来的数据用concat方法进行合并[合并请求的数据]
         var lists = that.data.query.pageIndex === 1
