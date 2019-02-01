@@ -2,12 +2,13 @@
 <view class="container">
   <!-- 用户 openid -->
   <view class="userinfo">
-    <button 
+    <!-- <button 
       open-type="getUserInfo" 
       bindgetuserinfo="onGetUserInfo"
       class="userinfo-avatar"
       style="background-image: url({{avatarUrl}})"
-    ></button>
+    ></button> -->
+    <image class="userinfo-avatar" src='{{avatarUrl}}'></image>
     <view>
       <!--如果没有userInfo，显示"登录"-->
       <button wx:if="{{!userInfo}}" class="userinfo-nickname" bindtap="onGetOpenid">点击登录系统</button>
