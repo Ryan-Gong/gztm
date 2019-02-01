@@ -7,7 +7,7 @@ App({
 
     this.globalData = {
       //全局变量
-      ApiUrl: "http://127.0.0.1:84", //api.bbic.cn.com
+      ApiUrl: "https://api.bbicdb.com",
       userInfo: '',//登录信息
     };
     //----------
