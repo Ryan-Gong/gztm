@@ -24,6 +24,7 @@
 
   <!-- 站点信息 -->
   <view class="uploader">
+    <image src="/images/home.png"></image>
     <navigator url="../sites/index/index" open-type="navigate" class="uploader-text">
       <text>磨面站查询</text>
     </navigator>
