@@ -33,6 +33,7 @@
 
   <!-- 设备信息 -->
   <view class="uploader">
+    <image src="/images/sb2.png"></image>
     <navigator url="../facility/index/index" open-type="navigate" class="uploader-text">
       <text>设备查询</text>
     </navigator>
@@ -40,6 +41,7 @@
 
   <!-- 零部件信息 -->
   <view class="uploader">
+    <image src="/images/parts.png"></image>
     <navigator url="../parts/index/index" open-type="navigate" class="uploader-text">
       <text>零部件查询</text>
     </navigator>
@@ -47,6 +49,7 @@
 
   <!-- 维护记录 -->
   <view class="uploader">
+    <image src="/images/tool01.png"></image>
     <navigator url="../repairs/index/index" open-type="navigate" class="uploader-text">
       <text>维护记录</text>
     </navigator>

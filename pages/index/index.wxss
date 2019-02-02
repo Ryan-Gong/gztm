@@ -55,9 +55,21 @@ page {
 .uploader, .tunnel {
   height: auto;
   padding: 0 0 0 40rpx;
-  flex-direction: column;
+  /* flex-direction: column; */
+  flex-direction: row;
   align-items: flex-start;
   box-sizing: border-box;
+}
+
+.uploader-image {
+  width: 100%;
+  height: 360rpx;
+}
+.uploader image{
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 18rpx;
+  margin-top: 35rpx;
 }
 
 .uploader-text, .tunnel-text {
@@ -76,15 +88,6 @@ page {
   justify-content: center;
   box-sizing: border-box;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.uploader-image {
-  width: 100%;
-  height: 360rpx;
-}
-.uploader image{
-  width: 50rpx;
-  height: 50rpx;
 }
 
 .tunnel {
