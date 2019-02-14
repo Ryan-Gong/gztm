@@ -1,13 +1,15 @@
 //app.js
 // 用 import 或者 require 引入模块 
 //import httpRequest from './apis/httpRequest.js';
+//http://127.0.0.1:84
+//https://api.bbicdb.com
 
 App({
   onLaunch: function () {
 
     this.globalData = {
       //全局变量
-      ApiUrl: "https://api.bbicdb.com",
+      ApiUrl: "http://127.0.0.1:84",
       userInfo: '',//登录信息
     };
     //----------
