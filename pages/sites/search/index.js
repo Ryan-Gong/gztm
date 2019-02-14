@@ -56,6 +56,8 @@ Page({
   getList: function () {
     let that = this;
     let list = that.data.list;
+    let _url = app.globalData.ApiUrl + '/site';
+    let _method = 'GET';
     //组装请求参数
     let query = {
       OTAId: that.data.userInfo.uname,
@@ -77,8 +79,8 @@ Page({
       query.Parameter.pageIndex = 1;
       //从API接口中查询数据
       http.request({
-        url: app.globalData.ApiUrl + '/repairs',
-        method: 'GET',
+        url: _url,
+        method: _method,
         data: query,
       }).then((res) => {
         let obj = {};
@@ -107,8 +109,8 @@ Page({
       if (list.pageIndex < list.pageCount) {
         //从API接口中查询数据
         http.request({
-          url: app.globalData.ApiUrl + '/site',
-          method: 'GET',
+          url: _url,
+          method: _method,
           data: query,
         }).then((res) => {
           let obj = {};
