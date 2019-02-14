@@ -10,8 +10,13 @@
   </view>
   <!--搜索结果-->
   <view class='section_show full'>
-    <scroll-view scroll-y  scroll-with-animation='true' style='height:100%;' >
-      <!--使用block实现展示循环数据-->
+    <!--使用block实现展示循环数据-->
+    <scroll-view scroll-y  scroll-with-animation='true' bindscrolltolower='loadmore' bindscroll='scroll' style='height:{{windowHeight}}px;'>
+      <!--无数据-->
+      <view class="weui-loadmore weui-loadmore_line" wx:if="{{list.data.length<=0}}">
+          <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+      </view>
+      <!--有数据,使用block实现展示循环数据-->
       <block wx:for='{{items.result}}' wx:for-index="index" wx:for-item="item">
         <view class='items full' bindtap='detail' data-id='{{item.id}}'>
           <!--标题-->
@@ -55,6 +60,14 @@
           </view>
         </view>
       </block>
+      <!--加载更多-->
+      <view class="weui-loadmore" hidden="{{list.endTipHidden}}">
+          <view class="weui-loading"></view>
+          <view class="weui-loadmore__tips">{{endTip}}</view>
+      </view>
+      <view class="loading m-end" hidden="{{!list.endTipHidden}}">
+        --我也是有底线的--
+      </view>
     </scroll-view>
     </view>
   <!--添加按钮 悬浮于底端-->
