@@ -1,5 +1,7 @@
 // miniprogram/pages/sites/index/index.js
-const app = getApp()
+const app = getApp();
+var user = require("../../../utils/user.js");
+var http = require("../../../request/httpRequest.js");
 Page({
 
   /**
@@ -106,6 +108,52 @@ Page({
       that.getList();
     }, 1500);//1.5秒的延时器
   },
+  //滚动到底部触发事件
+  loadmore: function (e) {
+    let that = this;
+    let list = that.data.list;
+    //如果还有数据
+    if (list.pageIndex < list.pageCount) {
+      //模拟加载--期间为了显示正在加载中的效果-模拟网络延迟
+      setTimeout(() => {
+        //网络返回请求
+        that.getList();
+      }, 1500);//1.5秒的延时器
+    }
+    return;
+  },
+
+  //滚动时触发-滚动记录之前的滚动位置
+  // 在滚动的过程中，不断的记录更新每一个子项它最后滚动到的位置，
+  // 下次进入这一屏，就看看数据里面有没有这个滚动值，没有的话，就是第一次进入，默认为0，
+  // 如果有值，说明之前我们已经滚动过一次，则赋值给scroll-view的scroll-top
+  scroll: function (e) {
+    let that = this;
+    setTimeout(function () {
+      //console.log(e.detail.scrollTop);
+      let list = that.data.list;
+      if (list) {
+        list.scrollTop = e.detail.scrollTop;
+        that.setData({
+          list
+        })
+      }
+    }, 300);
+  },
+
+  //获取屏幕高度/宽度
+  getSystem: function () {
+    let that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        //console.log(res);
+        that.setData({
+          windowHeight: res.windowHeight,
+          windowWidth: res.windowWidth
+        })
+      },
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -115,7 +163,26 @@ Page({
       type: options.type || '',
       keys: options.keys || ''
     });
-    that.wait();
+    //that.wait();
+    let that = this;
+    that.getSystem();
+    //检查用户是否登录
+    user.chklogin().then((res) => {
+      //如果已经登录，从缓存中把登录信息赋值给userInfo
+      //console.log("第1步：处理登录信息");
+      that.setData({
+        userInfo: res.data
+      });
+    }).then((res) => {
+      //console.log("第2步：登录用户成功后相关的事务");
+      //模拟加载--期间为了显示正在加载中的效果-模拟网络延迟
+      setTimeout(() => {
+        //网络返回请求
+        that.getList();
+      }, 1500);//1.5秒的延时器
+    }).catch((err) => {
+      console.log(err);
+    });
   },
   //显示对话框
   showModal: function () {
