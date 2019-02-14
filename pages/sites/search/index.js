@@ -59,9 +59,11 @@ Page({
     //组装请求参数
     let query = {
       OTAId: that.data.userInfo.uname,
+      //mode：空/index=站点管理首页-统计;search=搜索页面
       Parameter: {
+        type:'that.data.type',
         mode: 'search',
-        keys: that.data.inputVal, //关键词
+        keys: that.data.keys, //关键词
         pageSize: that.data.query.pageSize,
         pageIndex: 1, //先读取第一页
       },
@@ -105,13 +107,13 @@ Page({
       if (list.pageIndex < list.pageCount) {
         //从API接口中查询数据
         http.request({
-          url: app.globalData.ApiUrl + '/repairs',
+          url: app.globalData.ApiUrl + '/site',
           method: 'GET',
           data: query,
         }).then((res) => {
           let obj = {};
-          let result = res.result;
-          let ds = res.result.result;
+          let result = res.data;
+          let ds = res.data.result;
           obj.pageIndex = result.pageIndex;
           obj.pageCount = Math.ceil(result.count / result.pageSize);
           obj.total = result.count;
@@ -132,30 +134,6 @@ Page({
       }
     }
     //---end------
-  },
-  //与后台连接得到数据
-  req: function () {
-    var that = this;
-    var url = app.globalData.ApiUrl;
-    wx.request({
-      url: url + '/site',
-      data: {
-        "OTAId": "OTA",
-        "Parameter": { "mode": "search", "keys": that.data.keys, "type": that.data.type }, //mode：空/index=站点管理首页-统计;search=搜索页面
-        "Signature": ""
-      },
-      method: 'GET',
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        console.log(res.data.result);
-        that.setData({
-          result: res.data,
-          items: res.data.result
-        });
-      }
-    });
   },
   //带加载框提示的搜索
   wait: function () {
