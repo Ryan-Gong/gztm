@@ -114,8 +114,8 @@ Page({
           data: query,
         }).then((res) => {
           let obj = {};
-          let result = res.data;
-          let ds = res.data.result;
+          let result = res.result;
+          let ds = res.result.result;
           obj.pageIndex = result.pageIndex;
           obj.pageCount = Math.ceil(result.count / result.pageSize);
           obj.total = result.count;
