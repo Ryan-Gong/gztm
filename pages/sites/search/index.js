@@ -6,6 +6,20 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userInfo: '',//用户登录信息
+    //请求参数 query
+    query: {
+      keys: '',
+      pageIndex: 1,
+      pageSize: 10,
+    },
+    windowWidth: 375, //屏幕可用宽度
+    windowHeight: '', //屏幕可用高度
+
+    endTipHidden: false,  //是否隐藏加载提示
+    endTip: '正在加载', //是否全部加载完毕
+
+    list: '', //把所有子项的数据都放在list里面
     keys: '',
     result:{},
     items:{},
