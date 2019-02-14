@@ -50,6 +50,89 @@ Page({
       keys: e.detail.value
     })
   },
+  /**
+   * 请求列表
+   */
+  getList: function () {
+    let that = this;
+    let list = that.data.list;
+    //组装请求参数
+    let query = {
+      OTAId: that.data.userInfo.uname,
+      Parameter: {
+        mode: 'search',
+        keys: that.data.inputVal, //关键词
+        pageSize: that.data.query.pageSize,
+        pageIndex: 1, //先读取第一页
+      },
+      Signature: ''
+    };
+    //如果list为空【即第一次访问前，暂无数据】
+    //判断对象是否为空:ES6的新方法, 返回值也是对象中属性名组成的数组
+    // var _data = Object.keys(list);
+    // if (_data.length == 0) {
+    if (!list) {
+      query.Parameter.pageIndex = 1;
+      //从API接口中查询数据
+      http.request({
+        url: app.globalData.ApiUrl + '/repairs',
+        method: 'GET',
+        data: query,
+      }).then((res) => {
+        let obj = {};
+        let result = res.result;
+        let ds = res.result.result;
+        obj.pageIndex = result.pageIndex;
+        obj.pageCount = Math.ceil(result.count / result.pageSize);
+        obj.total = result.count;
+        obj.data = ds;
+        if (result.pageIndex * result.pageSize >= result.count) {
+          obj.endTip = '没有更多了';
+          obj.endTipHidden = true;
+        } else {
+          obj.endTip = '正在加载';
+        }
+        that.setData({
+          list: obj
+        });
+        console.log(obj);
+      }).catch((err) => {
+        console.log(err);
+      });
+    } else {
+      //翻页
+      query.Parameter.pageIndex = list.pageIndex + 1;
+      if (list.pageIndex < list.pageCount) {
+        //从API接口中查询数据
+        http.request({
+          url: app.globalData.ApiUrl + '/repairs',
+          method: 'GET',
+          data: query,
+        }).then((res) => {
+          let obj = {};
+          let result = res.result;
+          let ds = res.result.result;
+          obj.pageIndex = result.pageIndex;
+          obj.pageCount = Math.ceil(result.count / result.pageSize);
+          obj.total = result.count;
+          obj.data = list.data.concat(ds);
+          if (result.pageIndex * result.pageSize >= result.count) {
+            obj.endTip = '没有更多了';
+            obj.endTipHidden = true;
+          } else {
+            obj.endTip = '正在加载';
+          }
+          that.setData({
+            list: obj
+          });
+          console.log(obj);
+        }).catch((err) => {
+          console.log(err);
+        });
+      }
+    }
+    //---end------
+  },
   //与后台连接得到数据
   req: function () {
     var that = this;
@@ -84,7 +167,7 @@ Page({
       success: function () {
         setTimeout(function () {
           //that.req(that.data.keys);
-          that.req();
+          //that.req();
         }, 2000);
       },
     });
@@ -164,7 +247,6 @@ Page({
       keys: options.keys || ''
     });
     //that.wait();
-    let that = this;
     that.getSystem();
     //检查用户是否登录
     user.chklogin().then((res) => {
