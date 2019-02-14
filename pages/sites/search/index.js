@@ -61,7 +61,7 @@ Page({
       OTAId: that.data.userInfo.uname,
       //mode：空/index=站点管理首页-统计;search=搜索页面
       Parameter: {
-        type:'that.data.type',
+        type: that.data.type,
         mode: 'search',
         keys: that.data.keys, //关键词
         pageSize: that.data.query.pageSize,
