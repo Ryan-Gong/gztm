@@ -87,15 +87,24 @@ Page({
       },
     });
   },
-  //搜索
+  //搜索--点击小键盘上的[搜索按钮或enter]就触发要执行的方法
   search: function (e) {
     var that = this;
+    //清空list,重新获取数据（关键）
+    this.setData({
+      list: '',
+    });
     // 滚动到顶部
     wx.pageScrollTo({
       scrollTop: 0
     });
-    //that.req(this.data.keys);
-    that.wait();
+    //查询数据
+    //that.wait();
+    //模拟加载--期间为了显示正在加载中的效果-模拟网络延迟
+    setTimeout(() => {
+      //网络返回请求
+      that.getList();
+    }, 1500);//1.5秒的延时器
   },
   /**
    * 生命周期函数--监听页面加载
