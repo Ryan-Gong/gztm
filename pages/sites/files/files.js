@@ -19,10 +19,10 @@ Page({
     var that = this;
     var url = app.globalData.ApiUrl;
     wx.request({
-      url: url + '/repairs',
+      url: url + '/files',
       data: {
         "OTAId": "OTA",
-        "Parameter": { "siteId": id },
+        "Parameter": { "id": id, "type": "site"},
         "Signature": ""
       },
       method: 'GET',
@@ -30,11 +30,11 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
-        var result = res.data.result
-        console.log(res);
+        var result = res.data;
+        //console.log(res);
         //设置页面的数据
         that.setData({
-          site: result.siteInfo,
+          site: result.info,
           repairs: result.result, //设备信息
         });
         //使用 JS 动态 设置 页面标题

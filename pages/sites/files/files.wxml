@@ -2,7 +2,7 @@
 <view class="page">
     <!--页头-->
     <view class="page__hd">
-      <view class="page__title">{{site.zdm}}</view>
+      <view class="page__title">{{site.name}}</view>
       <view class="page__desc">文件清单</view>
     </view>
     <!--主体-->
