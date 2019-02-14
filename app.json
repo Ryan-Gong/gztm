@@ -24,7 +24,8 @@
     "pages/repairs/search/search",
     "pages/msg/msg_success",
     "pages/msg/msg_fail",
-    "pages/repairs/edit/edit"
+    "pages/repairs/edit/edit",
+    "pages/files/show/show"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

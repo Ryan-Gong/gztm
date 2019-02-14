@@ -10,7 +10,7 @@ Page({
     zdid: '',//站点id
     popErrorMsg: '',
     site: {}, //站点信息
-    repairs: {},//维护信息
+    files: {},//文件信息
     chooseSize: false,
     animationData: {},
     editRight: false,//是否有编辑权限
@@ -35,11 +35,11 @@ Page({
         //设置页面的数据
         that.setData({
           site: result.info,
-          repairs: result.result, //设备信息
+          files: result.result, //设备信息
         });
         //使用 JS 动态 设置 页面标题
         wx.setNavigationBarTitle({
-          title: '与' + result.siteInfo.zdm + '相关维护记录'
+          title: '与' + result.info.name + '存档信息'
         });
       }
     });
