@@ -179,3 +179,8 @@ background: #07cc60;
   box-sizing: border-box;
   /*padding: 0 30rpx;*/
 }
+.m-end {
+    /* padding: 20rpx 0 34rpx;
+    line-height: 28rpx; */
+    text-align: center;
+}

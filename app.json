@@ -14,18 +14,18 @@
     "pages/facility/index/index",
     "pages/facility/show/show",
     "pages/files/index/index",
+    "pages/files/show/show",
     "pages/parts/index/index",
     "pages/parts/show/show",
     "pages/repairs/index/index",
     "pages/repairs/show/show",
     "pages/repairs/add/add",
+    "pages/repairs/edit/edit",
     "pages/repairs/verify/verify",
     "pages/repairs/confirm/confirm",
     "pages/repairs/search/search",
     "pages/msg/msg_success",
-    "pages/msg/msg_fail",
-    "pages/repairs/edit/edit",
-    "pages/files/show/show"
+    "pages/msg/msg_fail"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
